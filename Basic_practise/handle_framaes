@@ -1,0 +1,34 @@
+package com.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class handle_framaes {
+	@Test
+	public void frames() {
+		System.setProperty("webdriver.chrome.driver", "/home/surya/eclipse/chromedriver");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("");
+		//to find all tha iframes
+		int total_iframe = driver.findElements(By.tagName("iframe")).size();
+		System.out.println(total_iframe);
+		//you can use Webelement instant of id or class
+		WebElement my_element = driver.findElement(By.xpath(""));
+		driver.switchTo().frame(my_element);
+		//in insfect value go to iframe you will get id or class value
+		// driver.switchTo().frame("enter the id value");
+		 //inside iframe click on the  link
+		driver.findElement(By.xpath("")).click();
+		//so if you are in iframe you can only perform activity in that frame
+		//you cannot go to another frame to do so switch to parent or another frame
+		driver.switchTo().defaultContent();
+		
+		
+		
+	}
+
+}
