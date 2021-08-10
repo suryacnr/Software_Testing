@@ -1,0 +1,52 @@
+package pages.TC_Orders;
+
+import baseClass.BaseClass;
+import iSAFE.ALR;
+import iSAFE.ApplicationKeywords;
+import iSAFE.GOR;
+import pages.CommonUtilities;
+import pages.Login_Logout;
+
+public class TC_ODR_009 extends ApplicationKeywords {
+	BaseClass obj;
+	CommonUtilities utilities;
+	Login_Logout login_Logout;
+	private Boolean status = false;
+
+	public TC_ODR_009(BaseClass obj) {
+		super(obj);
+		this.obj = obj;
+	}
+		public void tC_ODR_009() {
+		utilities = new CommonUtilities(obj);
+		login_Logout = new Login_Logout(obj);
+		try {
+			String shipper =retrieve("Shipper");
+			
+			utilities.clickOnLeftMenu(ALR.purchaseOrder);
+			utilities.clickOnLeftMenu(ALR.orders);
+			utilities.waitForAngularLoad();
+			clickOn(GOR.addNewRecord_plusIcon);
+			utilities.SearchelipsisButton(ALR.consignorlabels);
+			utilities.applyFilter(GOR.filter_order);
+			utilities.waitForAngularLoad();
+			utilities.enterInputValueInSearchField(ALR.organizationCodeAndNameLabel, shipper, true);
+			utilities.waitForAngularLoad();
+			utilities.VerifyCheckbox(ALR.isconsignor);
+			utilities.applyFilter(GOR.applyFilter);
+			waitForAngularLoad();		
+			utilities.clickTablePositionValue(1,1);
+
+			
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (obj.testFailure ||login_Logout.testFailure || utilities.testFailure) {
+			status = true;
+		}
+		this.testFailure = status;
+	}
+
+}
