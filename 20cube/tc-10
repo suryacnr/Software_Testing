@@ -1,0 +1,50 @@
+package pages.TC_Orders;
+
+import baseClass.BaseClass;
+import iSAFE.ALR;
+import iSAFE.ApplicationKeywords;
+import iSAFE.GOR;
+import pages.CommonUtilities;
+import pages.Login_Logout;
+
+public class TC_ODR_010 extends ApplicationKeywords {
+	BaseClass obj;
+	CommonUtilities utilities;
+	Login_Logout login_Logout;
+	private Boolean status = false;
+
+	public TC_ODR_010(BaseClass obj) {
+		super(obj);
+		this.obj = obj;
+	}
+		public void tC_ODR_010() {
+		utilities = new CommonUtilities(obj);
+		login_Logout = new Login_Logout(obj);
+		try {
+			String consignee =retrieve("consignee");
+			
+			utilities.clickOnLeftMenu(ALR.purchaseOrder);
+			utilities.clickOnLeftMenu(ALR.orders);
+			utilities.waitForAngularLoad();
+			clickOn(GOR.addNewRecord_plusIcon);
+			utilities.SearchelipsisButton(ALR.consignelabel);
+			utilities.applyFilter(GOR.filter_order);
+			utilities.waitForAngularLoad();
+			utilities.enterInputValueInSearchField(ALR.organizationCodeAndNameLabel, consignee, true);
+			utilities.waitForAngularLoad();
+			utilities.applyFilter(GOR.applyFilter);
+			waitForAngularLoad();
+			utilities.VerifyCheckbox(ALR.isconsignee);
+			waitForAngularLoad();
+			utilities.clickTablePositionValue(1,1);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (obj.testFailure ||login_Logout.testFailure || utilities.testFailure) {
+			status = true;
+		}
+		this.testFailure = status;
+	}
+
+}
