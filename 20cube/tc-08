@@ -1,0 +1,53 @@
+package pages.TC_Orders;
+
+import baseClass.BaseClass;
+import iSAFE.ALR;
+import iSAFE.ApplicationKeywords;
+import iSAFE.GOR;
+import pages.CommonUtilities;
+import pages.Login_Logout;
+
+public class TC_ODR_008 extends ApplicationKeywords {
+	BaseClass obj;
+	CommonUtilities utilities;
+	Login_Logout login_Logout;
+	private Boolean status = false;
+
+	public TC_ODR_008(BaseClass obj) {
+		super(obj);
+		this.obj = obj;
+	}
+		public void tC_ODR_008() {
+		utilities = new CommonUtilities(obj);
+		login_Logout = new Login_Logout(obj);
+		try {
+			String orders = retrieve("Order");
+			String consignees = retrieve("Consignee");
+			String consignors = retrieve("Consignor");
+			
+			utilities.clickOnLeftMenu(ALR.purchaseOrder);
+			utilities.clickOnLeftMenu(ALR.orders);
+			utilities.waitForAngularLoad();
+			clickOn(GOR.addNewRecord_plusIcon);
+			utilities.waitForAngularLoad();
+			utilities.enterInputWithTab(ALR.orderNolabels, orders, true); 
+			utilities.waitForAngularLoad();
+			utilities.enterInputWithTab(ALR.consignelabels, consignees, true);
+			utilities.waitForAngularLoad();
+			//utilities.enterInputValueInSearchField(ALR.consignorFldLabel, consignors, true);
+			utilities.enterTextIntoconsigner(ALR.consignorlabels,  consignors);
+			utilities.clickFooterButton(ALR.saveLabel, true);
+			utilities.waitForAngularLoad();
+			//utilities.enterTextIntosearchBox(ALR.consignorlabels, consignors);
+			utilities.validationErrors();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (obj.testFailure ||login_Logout.testFailure || utilities.testFailure) {
+			status = true;
+		}
+		this.testFailure = status;
+	}
+
+}
