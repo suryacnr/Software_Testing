@@ -1,0 +1,46 @@
+package pages.TC_Orders;
+
+import baseClass.BaseClass;
+import iSAFE.ALR;
+import iSAFE.ApplicationKeywords;
+import iSAFE.GOR;
+import pages.CommonUtilities;
+import pages.Login_Logout;
+
+public class TC_ODR_011 extends ApplicationKeywords {
+	BaseClass obj;
+	CommonUtilities utilities;
+	Login_Logout login_Logout;
+	private Boolean status = false;
+
+	public TC_ODR_011(BaseClass obj) {
+		super(obj);
+		this.obj = obj;
+	}
+		public void tC_ODR_011() {
+		utilities = new CommonUtilities(obj);
+		login_Logout = new Login_Logout(obj);
+		try {
+			String consignor =retrieve("Consignor");
+			utilities.waitForAngularLoad();	
+			utilities.clickOnExpandMenuButtonIfCollapsed();
+			utilities.clickOnLeftMenu(ALR.purchaseOrder);
+			utilities.clickOnLeftMenu(ALR.orders);
+			utilities.waitForAngularLoad();
+			waitForElementToDisplay(GOR.bookingTab,10);
+			clickOn(GOR.addNewRecord_plusIcon);
+			waitForAngularLoad();
+			
+			utilities.enterInputValueInSearchField(ALR.consignorFldLabel, consignor, true);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (obj.testFailure ||login_Logout.testFailure || utilities.testFailure) {
+			status = true;
+		}
+		this.testFailure = status;
+	}
+	
+
+}
