@@ -1,0 +1,21 @@
+Locators -Xpath Axes
+Xpath axes are those axes that are used to search for the multiple nodes in the XMl document from the current node
+these methods are maninly used when the web element is not identified with the help of ID, name, link text, and so on
+
+xpath axes
+self =current node
+parent =which is top of current not is parent
+child = which is below the current node is child
+ancestor= which is top of parent is ancestor
+Descendant = which is the below the child is decendant
+following =which comes after current  all are  following
+following-sibling = which comes after following is following sibling
+preceding= that comes before the current node all are preceding
+preceding-sibling= thats after preceding is preceding-sibling
+
+
+parent=//div//label[contains(text(),'Goods Desc')]/parent::div
+child=//div//label[contains(text(),'Goods Desc')]/child::* or //div//label[contains(text(),'Goods Desc')]/ancestor::/td/child::span
+ancestor=//div//label[contains(text(),'Goods Desc')]/ancestor::td
+following=//div//label[contains(text(),'Goods Desc')]/following::td
+
