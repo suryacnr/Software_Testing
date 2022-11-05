@@ -1,0 +1,60 @@
+continus integration
+
+devops will create the build and they will run testers smoke testing or sanity testing code and check whether the build is stable through jenkines, build will be certified by 
+devops this process is called as continus integration
+
+
+Devops will do build,test and release  build and test is called contnius integration
+where release is called continus deployment
+
+
+Install jenkins ?
+download from google and extratct file an and double tap on the file and install jenkines
+now configure the jenkins, once installed open localhost:8080 is default 
+now unlock the jenkins password from jenkins folder from program file from c drive in  that open secrets folder from jenkins folder initialadminpassword
+then put the password in the jenkins and click on install suggested plugins
+then create first admin user and set the jenkis url
+
+
+4.Execute project using free style project(run.bat)
+ i.click on new item
+ 2.enter the item name
+ 3.click on free style project select that
+ 4.if you want write the description of the project 
+ 5.then go to build section and select execute window batch file
+ 6. then specifie the project location
+ 7.then specifie the file which we needs to execute eg run.bat
+ 8.then clcik apply and save
+ 
+ if we click on configure we will go to same above page
+ to run we can use right click on the project and build now (or) click on the project and left hameburger click build now
+ if the bole icon(world) changes to blue all the test cases pass if it changes to red any of the test cases got failed if it changes to brown test cases not executed
+ 
+5.Execute project using maven(pom.xml) we use in real time this approch
+ 1.install maven plugin
+ 2.then select all maven related plugins and click install
+ 3.if we want to install additional plugin also click on manage jenkins from hameburger and click on manage plugins
+ 4. click on manage jenkins and click on gloable tool configuration and set jdk path
+ 5.click install JDK and set the name and path, the same path must be in theenvironment variable
+ i.click on new item
+ 2.enter the item name
+ 3.click on maven project select that
+ 4.if you want write the description of the project 
+ 5.then go to build section and give root pom location
+ 6.then give comment == clean install
+ 7go to post build action and select editable email
+ 8.then clcik apply and save
+ 
+
+over here we have one problem we are using local location but in real time jenkins will be running in different server so to solve this we have two ways:
+1.move the whole project into jenkins server then we can configure jenkis local path this will work(but it is not effective)
+2.we can keep the project in repostiry so from there we can take to jenkins so we can provide the url of the repositry in the jenkins instead of giving the local location
+
+
+
+A jenkins pipline 
+
+The pipline is a group of events or jobs which are initerlinked with one another in sequience
+In jenkins there are 4 pipline 
+Build job, deploy job, test job, release job
+
