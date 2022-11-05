@@ -1,0 +1,53 @@
+Selenium grid
+it has hub server runs in our local mechine  we use different node which can run in different mecheine. we can have N number of nodes running in different mechine like chrome
+with windows/firefox with linux and safire with mac
+To do this we have different option
+1.Local mechine ==this is for pratics
+2.differnet mechine ask from manager this is very expenisve
+3.different VM == we can take VM ware or vitual mechine its expensive in money but still people are using it
+4.Docker containers ==everthing we need to set up in the form of containers so no budget but we dont have containers for edge and safari
+5.cloud providers == if we dont spend money for hardware we can go for cloud providers like aws/asure/google cloud
+
+1.Run test cases using pom.xml file
+before we used only for depandancy now we are going to use pom.xml to run testng.xml  will execute test cases
+In pom.xml file there are two type of entrys one is defandancy entry and onther is plugin we need to add compiler plugin and another one is surefire plugin to run test cases 
+from pom.xml file
+After property tags in pom.xml we need to add the tag <build></build> inside that we need to add <plugins></plugins> inside that we need to add plugin which was downloaded 
+from google
+now update the project from maven option or use AIT+F5
+To execute the pom.xml file right click on the file and click run as then click on maven test this will start executing
+
+
+2.run test cases thorugh  Maven CLI
+to do this we need maven in our windows
+ i.How to install and configure zip file
+  download from google and extract the zip file, put in direct after C directory and configure environment variable. copy the path till bin folder
+  in path variable past the copied path. if its installed open the cmd and type mvn -- version  if it gives the version maven as been installed properly
+
+  take the project current location and naviagete to the location in CMD 
+  and give mvn clean install 
+  
+  instead of give above codes manually we can use bat file to execute thos 
+  
+3.run test cases thorugh  run.bat file
+Create run.bat file inside project
+copy this code in bat fie
+ cd C:\location
+ mvn clean install
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
