@@ -58,3 +58,72 @@ The pipline is a group of events or jobs which are initerlinked with one another
 In jenkins there are 4 pipline 
 Build job, deploy job, test job, release job
 
+chain required jobs eg: build,develop,test,deployment
+create all the above requirement and speratly in jenkins and chain them together
+eg if you select the development project in jenkis and give description and come to build trigger section
+then select buld after other project build
+ specifie the buildproject  and click save 
+if you use testjob then click on the project and come to build trigger section then select build after other project build
+ specife the developmentproject and click save and so on..
+ now click on the first job which needs to run eg run the build job
+
+now we can create the pipline 
+1.Install build pipline plugin ==click on manage jenkins and click manage plugin and serach for build pipline pulin 
+2.in dashboard click on plus icon and select build pipline view and enter the name for the pipline then click oK
+3.now it will give configure page under pipline flow section in that upstream and down stream section select the job which we needs to run first then click apply and ok
+
+
+we can create the pipline using two ways 
+1.scripted pipline ==write a grovvy code inside the jenkins 
+2.declarative pipline ==this is done in abve method
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
