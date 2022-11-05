@@ -1,0 +1,16 @@
+continus integration
+
+devops will create the build and they will run testers smoke testing or sanity testing code and check whether the build is stable through jenkines, build will be certified by 
+devops this process is called as continus integration
+
+
+Devops will do build,test and release  build and test is called contnius integration
+where release is called continus deployment
+
+A jenkins pipline 
+
+The pipline is a group of events or jobs which are initerlinked with one another in sequience
+In jenkins there are 4 pipline 
+Build job, deploy job, test job, release job
+
+till 17 mins
