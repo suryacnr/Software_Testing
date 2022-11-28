@@ -2,7 +2,13 @@ Git is the local repository
 Github is the remote repository
 combaining all task is called continus integration
 Eg: working copy/Pc1==commit==local_repostory == push ==Remote repostry ==pull == local_repostory == update == working_copy/Pc 2
-
+echo "# dumyusage" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/suryacnr/dumyusage.git
+git push -u origin main
 
 Create local folder and make this as git local repostry. how to make it as git local repository
 we need to navigate to tha folder using git and initialize the local repostory into git
@@ -23,10 +29,17 @@ $git add -A (will add all the files from local)
 now to add to github, first time it will ask username and email
 git config --global user.name "surya"
 git config --global user.email "sury@gmail.com"
+$git branch testing // create a new branch and stay on the same branch
+$ git checkout -b testing2 //create new branch and switch to that branch 
 $git commit -m "first test"
+$git commit  -o "second" // to commit sfefic fill
+git commit  -a "second" // to commit all the files
+
+
 $git commit -a (all the files)
 to push all the folder evey time, you have to pull than only you have to push
-$git pull orgin master 
+$git pull orgin master
+$git push orgin salesforce // you can create pust to other branch by entering the branchname"
 $git push orgin master
 
 install the git plugin in eclipse market place as Egit-git integration for eclipse
