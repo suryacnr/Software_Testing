@@ -1,7 +1,8 @@
 Git is the local repository
 Github is the remote repository
 combaining all task is called continus integration
-Eg: working copy/Pc1==commit==local repostory == push ==Remote repostry ==pull == local repostory == update == working copy/Pc 2
+Eg: working copy/Pc1==commit==local_repostory == push ==Remote repostry ==pull == local_repostory == update == working_copy/Pc 2
+
 
 Create local folder and make this as git local repostry. how to make it as git local repository
 we need to navigate to tha folder using git and initialize the local repostory into git
@@ -29,7 +30,27 @@ $git pull orgin master
 $git push orgin master
 
 install the git plugin in eclipse market place as Egit-git integration for eclipse
-Step 1:) create/clone the git repostory in eclipse
+
+This is lead job done 
+Step 1:) right click on the project and click on team button and click on share project and click the check box for given project and click on finish button 
+Step 2:now the project is created in local git now again right click on project and click on teams and clcik on "add to Index" now the files will be added to staging arear(inside git) now we have to commit the prjoct do to so (continued in step 3)
+step 3.right click on project and click on team button and click on Commit button, now you will get the window to write the commits comments then click on commit button it will be commited.
+Step 4.) now we see all the files inside under the git of working trees folder
+Step 5.) right click on project and click on team button and click on remote and click on push and it will ask for the git url same url which is created in git we have to pass there and also provide theu user name and password and click on Next btton and enter the source and destination repo and click on "Add space" button and click on push button
+add a collobrator to share the files with ohher user
+
+now the team meat job needs to starts
+Step 1.) clone the reporsity by going to git repositry in eclipse and click on the " clone a Git reposity to list view" and prvide the projecturl and enter the user name and password and click next and click on finish button
+Step 2.) to add the project from git to local. right click on package explore tab and click on import project and select git and select the existing project and choose the project and click on next button.
+Step 3.) now the user can create new scripts and push it to github but now we have to push into different branch not into master branch
+Step 4.) to create the branch right click on the git project in the git repositry tab and click on "switch To" and click on new branch
+step 5.)  right click on the new branch name which was create and click on push branch and select merage and click next and proivde username and password and click finish
+
+
+
+
+
+<above steps and this steps are same> Step 1:) create/clone the git repostory in eclipse
   click on open perspective/search for git
   if there is no repositry available than you have click on clone git repository and clone into view
   than provide the url from github eg: https://github.com/suryanarayanan22/CI-CD.git
