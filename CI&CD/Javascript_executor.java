@@ -77,7 +77,17 @@ public static void flash(WebElement element, Webdriver driver){
       public static void ScollToDown(Webdriver driver){
    JavascriptExecutor js = new((JavascriptExecutor)drive);
      js.executeScript("argument[0].scrollTo(0,document.body.ScrollHight)");
-    }         
-    
+    }   
+                      
+    JavascriptExecutor js = (JavascriptExecutor)driver;
+    //scroll the page till bottam
+			js.executeScript("window.scrollBy(0,document.body.ScrollHight)");
+			Thread.sleep(5000);
+   //scroll the page top till the specified pixel
+			js.executeScript("window.scrollBy(0,-100)");
+		
+			//scroll the page till the specified element
+			js.executeScript("arguments[0].scrollIntoView(true)", ele);
+
 
 }
