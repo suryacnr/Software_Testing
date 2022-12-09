@@ -22,7 +22,7 @@ public class testng_intro {
 		
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3,enabled =flase)//this method will not run while exeuting if we specifie enable ==flase which will ignore
 	public void checkout()
 	{
 		System.out.println("iteam checkout");
