@@ -5,10 +5,22 @@
   
   <parameter name="browser" value="firefox"/>
   <classes>
+  <class name="testng.cross_browser">// we can give the class name to run the test scripts
+    // if you want to control the in method level we have to use method tag
+    <methods>
+      <include name="login"/>
+      <include name="logout"/>
+      //if we use exclude the metho the test script will not run
+      <exclude name="Login"/>
+    </methods>
   <class name="testng.cross_browser">
   </class>
   </classes>
   </test> <!-- Test -->
+  
+  
+  
+  
   
   <test thread-count="5" name="chrome">
   
