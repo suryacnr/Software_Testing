@@ -7,6 +7,64 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class datariveforLoop {
+	
+	
+	
+	
+	
+	
+	@DataProvider(name ="userdifinename")
+    public Object[][] excelreader( ) {
+    	XSSFWorkbook  book = null;
+    	Object[][] data=null;
+    	try {
+			String file = System.getProperty("user.dir")+"/TestData/XlData.xlsx";
+			FileInputStream getfile = new FileInputStream(file);
+			System.out.println(getfile);
+			book = new XSSFWorkbook(getfile);
+			XSSFSheet sheet =book.getSheetAt(0);
+			data =new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+			for(int i=0;i<sheet.getLastRowNum();i++) {
+				for(int j=0;j<sheet.getRow(0).getLastCellNum();j++) {
+					data[i][j]=sheet.getRow(i+1).getCell(j).toString();
+					
+				}
+			}
+			
+			//return data;
+			
+			//int lastrow=sheet.getLastRowNum();
+			//int lastcolum =sheet.getRow(1).getLastCellNum();
+//			for(int i=1;i<lastrow;i++) {
+//				XSSFRow row =sheet.getRow(i);
+//				for(int j=0;j<lastcolum;j++) {
+//					String cell =row.getCell(j).toString();
+//					
+//					System.out.print(" | ");
+//					
+//				}
+//				System.out.println();
+				
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	finally {
+    		try {
+				book.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+		
+		
+		return data;
+    	
+    	
+    }
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
