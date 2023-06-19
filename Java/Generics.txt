@@ -1,0 +1,374 @@
+Generics In Java
+--------------------------
+
+
+1.Introduction
+To resolve Type safety and type casting problems we use Generics
+
+Case:1 type safety:
+what is type safety
+Arrays are type safty we can give the gaenty for the type of elements present inside array for eg: if program requirement is to hold only string type we can chose string array if we try to add anyother objects we will get complie time error and Arraylist is not type safety
+String[] s = new String[1000];
+s[0]="durga';
+s[1]="ravi"'
+s[2]= new Integer(10); == Incompertable type found int required string
+
+Hence string array can contains only string type of objects due to this we can give the garenty paresent inside array hence array are safe to use with respective to type that is array are type safe
+
+
+Arraylist l=new Arraylist();
+l.add("durga");
+l.add(new Integer(10));
+
+
+
+
+But collection are not type safe that is we cant give the garanty for the type of eleemnt present inside collection if your programming reuirement is to hold only string type of objects and if we chose array list, by mistake trying to add any other type of object we would get any complie time error but program may fail at run time
+
+String name = (String) l.get(0);
+String name1 = (String) l.get(1); // will get class cast exeception at runtime
+
+
+collections are not type safe
+
+if you want to type safty go with array then why this new concept caome called generics ?
+
+There is big probem array is fixed in size if you now the size we can use array but if you dont know the size then we should go collection with generics concepts
+
+Case2 :
+Type casting
+
+String [] sl = new String[1000];
+s[0]="durga";
+
+In the case of arrays at the time of retrival type casting is not required.coz there is generanty for the element present inside the array
+String name = s[0];
+string name1= s[1];
+
+
+In the case of array list
+
+Arraylsit l= new Arraylist();
+l.add("add");
+string name1 = l.get(0);
+ERROR: found object and required string
+String name1=(string) l.get(0);
+type casting is mandatory for collection hence type casting is big headcake 
+ to over come the the above the problems sun people intraduced the generics in 1.5 version  hence the main object of genreics are 
+1.to provide type safety 
+2.To resolve type casting
+
+
+Sesion 2
+-----------------------
+For ex to hold only string type of object we can create genric version of array list as follow
+ArrayList<String> l= new AL<String>;
+
+For this array list we can add only string objects if we try to add any other object we will get compile time errror
+
+l.add("Durga");
+l.add("Ravi");
+l.add(new Integer(10)); ==>Compile time error
+Through genreic we are getting type safety
+
+
+String name1 =l.get(0);
+at the time of retrival we dont need to provide type casting, Hence we can solve type casting problem through generics
+
+Polymor
+usage of parent reference to hold child object one refernce to  hold mutiple runtime object is called polymorphisam
+
+In collection we have Collection(I)=====>List(I)
+List(i)
+
+Arraylist LinkedList   Veter   Stack
+
+List l = new AL();
+         new LL();
+         new Vector();
+         new Stack();
+
+Defenition of AL<String> L= neew AL<String>(); ?
+
+AL ==> BaseType
+<String>===>Parameter type
+
+List<String> L= neew AL<String>();
+Collection<String> L= neew AL<String>();
+AL<Object> L= neew AL<String>(); ==>Comple time error Icmopatible types
+Conclution 1
+-----------
+We can able to apply only poly cocnept in base type not in Parameter type
+
+
+Conclution 2
+-------------
+
+Collection cant hold premetive type 
+AL<int> x=new AL<int>();
+CE:unexpected type found int requirend refernce(Object)
+
+For type parameters We can take any class or interface but cant add premetivs
+
+Untill 1.4 version non generic version of array list class is declared as follow
+class AL{
+add(Obj o);
+
+Objet get(int intex)
+}
+the argument to add method is object hence we can add any type of object to the array list, due to this we missing type safety
+Return type of get method is object hence time of rerival we have to perfome type casting 
+
+In 1.5 version 
+<T> type parameters
+Class AL<T>{
+add(T intex);
+T get(int index);
+}
+
+
+In generics we are associating type parameters to class such type of parameters raised class is nothing but genric class or template class
+
+
+Based on  our requirement we can define our own generic class
+
+Class Account<T>{
+
+}
+
+Account<Gold> a =new Account<Gold>();
+Account<Pla> b =new Account<Pla>();
+
+EG: Simple gerneric lass
+
+Class Gen<T>{
+T ob;
+Gen(T ob){
+this.ob=ob;
+}
+
+public void show(){
+sop("The type of ob "+ob.getclass().getname();
+}
+
+public T getob(){
+
+return ob;
+}
+
+}
+
+
+//How to create object for that class
+
+Class test
+
+P S V main(String[] args)
+{
+Gen<String> g= new Gen<String>("durga");
+g.show();
+sop(g.getobj());
+
+Gen<Integer> g= new Gen<Integer>(10);
+g.show();
+sop(g.getobj());
+
+Session 3
+---------------------
+
+Bounded types
+We can bound the type parameter for particular range by using extends keyword such types are called bounded types
+EG: class Gen<T>{
+as the type paraments we can pass any type and there are no restriction hence it is unbounded type
+
+Gen<String> g= new Gen<String>();
+Gen<Integer> g= new Gen<Integer>();
+
+Syntax of bounded type
+EG: class Gen<T extends X>{
+
+}
+X can be either class or interface if X is class then as the type parameters we can pass either x type or its child class if X is an interface then we can pass X type or its implemenation class
+
+class Test<T extends number>{
+
+}
+
+Test<Integer> l1= new <Integer>();
+Test<String> l1= new <String>();
+
+ CE:Type parameter String ist not within its boud
+
+We can define bounded type even in combination also
+
+class Test<T extends number &Runnable>{
+
+}
+
+Test<Integer> l1= new <Integer>();  
+As a type parameters which should be child class of number and should be implements runable interface
+
+We can't extend more then 1 class at a time 
+
+Eg:
+class Test<T extends number & Thread>
+//We get error 
+
+
+We can take any type parametr 
+EG:Class Test<Surya>{
+EG:Class Test<X>{
+anything is valid
+
+we can take any type parameter 
+EG:Class Test<S,T>{
+EG:Class Test<T,S,K,V>{
+
+
+Session 4
+--------------------
+
+M1(AL<String> L)
+
+We can call this method by passing array list of only string type
+but within the method we can add only string type of object to list if we are trying to add any other type we will get compile time error
+
+1.M1(AL<String> L){
+
+l.add("A");
+l.add(10); //Error
+
+2.M1(AL<?> L)
+we can call this method by passing arraylist of anytype
+WithIn the method we can't add anything expect null coz we dont now the type exactly
+Why Null is allowed valed value for any type
+
+
+l.add("A");//Error
+l.add(10); //Error
+l.add(null);//valid
+l.add(10); //Error
+
+This type of method are best sutable for read only operation.
+EG:Sop(");
+
+3.m1(<AL<? extends X> l){
+
+X can be either class or interface if X is a class then we can call this method by passing array list as either X type are its child class
+If X is an interface then we can call this method my passing either is X type or its implementation class
+
+WithIn the method we can't add anything expect null coz we dont now the type of X exactly
+This type of method are best sutable for read only operation.
+EG:Sop(");
+
+4.m1(<AL<? super X> l){
+
+X can be either class or interface if X is a class then we can call this method by passing array list as either X type are its child class
+If X is an interface then we can call this method my passing either is AL of X type or super class of implementation class of X
+
+Within this method we can add X type of object and Null
+
+
+Session 5
+-------------
+
+We can declare type parameter either at class level or at method level, declaring type parameter at class level 
+EG: class Test <T> 
+we can use T within this class based on requiremenet
+
+Declaring type parameter at method level we have to declare type paramater just before return type
+public <T> void m1(){
+
+we can use T anywhere in the method based on the requirement
+
+We can define bounded type at method level also
+
+If we sent generic object to non genric area it start begaving like non genric object similairly non genric object to gernric area then start begaving like genric 
+
+Communication with non generic code what will be the begaiviour
+p S V main(String[] args){
+
+AL<String> l=new AL<String>
+l.add("Durga");
+l.add(10);//Compile time error
+m1(L);
+SOP(L) //Durga,10,10.5
+l.add(True);
+
+}
+
+p S V m1(Arraylist l){
+
+l.add(10);
+l.add(10.5);
+
+}
+
+Generic concept only came at compile time, on runtime generic gone at the time of compilation at last step generic syntax will be removed
+
+hence the following declaration is equal
+
+AL l= New AL<String>();
+AL l= New AL<Integer>();
+AL l= New AL<Double>();
+
+l.add(10);
+l.add(10.5);
+l.add(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This Keyword
+
+For returning the instance of the current class
+
+If use return this then the return type must be current class
+
+EG:
+public void display(){
+sop(a);
+Sop(b);
+
+public BaseClass returnCurrent(){
+
+return this;
+}
+
+TO call this 
+Baseclass cl =new Baseclass():
+
+Cl.returnCurrent().display();
+
+
+This Keyword
+
+For returning the instance(Object) of the current class as amethod argument
+
+pubic void methodX (){
+ method(this)
+
+}
+pubic void methodY (ClassA obj){
+ sop("This is simple method");
+
+
+}
+
+
+
