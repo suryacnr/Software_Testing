@@ -1,0 +1,369 @@
+ 				Selenium by durga soft
+ Manual testing:
+Why we need to do testing ?
+Identify the bugs or defects  issue in the application  (deviating )
+Testing objective of application : quality of application
+Manual testing :execute test case manully is nothing but maual testing
+Automation testing:   execute the test case using some automation or third party  tools application 
+Test case : collection of test steps and it tells the expected result  of the requirement
+What is body of the test case : test template eg: test id ,test description,test steps, test input,actual result ,excepted result,status ,bug_Id,excuted by,excuted date
+Roles and responsible :
+Requirement  : what client needs 
+1.understand the req functionality 
+2.prepare the test case 
+3.exceute the test case  we need to compare expected result vs actual result
+4.if test case faile log in to bug assign bug to developer
+5.retest the test  case   with same steps 
+Droug back :
+Major : if you want to do regression testing frequently  in manual testing is not  possible then we move on to automation 
+Why regrestion testing is not possible by manual testing?
+
+1.no of resources required
+2.time consuming 
+3.expensive 
+4.repitable task are not possable 
+Webdriver first session :
+Textdemo
+Firefox is class come constractor . constractor will execute when the object is created
+Webdreiver is an interface: it contains unimplemented method 
+The unimplemented is done in firefox driver
+The object identification : == later class
+
+Locators:
+ID
+Name
+Link 
+Xpath 
+Css
+Class name
+Tag name
+Selenium second class:
+Test box
+Text area
+Check box
+Drop Down
+Radio Button
+Hyperlink
+1.Handle hykper link
+Driver.findElement(by.linkText(“sign in”)).click();
+2.Text box 
+Driver.findElement(by.name(“Name”).sendkeys(“8220228161”);
+3.handel check box
+Driver.findElement(by.name(“Name”)).click();
+4.text area
+Driver.findElement(by.name(“Name”).sendkeys(“welcome”);
+5.Droup down
+Droup down code is implemented in select class
+Create constructor
+//this is constractor insdie constractor they are asking for driver element
+new select(driver.findelement(By.name(“country”) .selectbyidex or .selectbyvalue or.selectbyvisabletext(
+6.radio button
+Driver.findelement(By.xpath(“//inpux//”)).click();
+Third  class selenium :
+	Extract text/object from web page using webdriver
+1.get text:
+Get text will return string
+String firstname=Driver.findelement(By.xpath
+(‘//*[@id=’sometext’])).gettext();
+Syso(firstname);
+String expectedname =”john”;
+If(expectedname.equalignorecase(firsttname)){
+Syso(“test case pass”);
+}else{
+Syso(‘test case fail’)
+2.Tool tip text:
+Tool tip is nothing but if click on google it will highlight extrat tip about google that is called tool tip
+In most of the website the tool tip will be available in titile atribute
+String tooltip =driver.findelement(By.xpath
+(‘//*[@id=’sometext’])).getattribute(‘title’);
+Syso(tooltip);
+3.get name property:
+//you will get the name value 
+String namevalue =driver.findelement(By.xpath
+(‘//*[@id=’sometext’])).getattribute(‘name’);
+4.get the value from the text box:
+//enter the data from the url 
+Driver.getelement(by.id(‘dkag’)).sendkeys(‘selenium’);
+//get the data from the text box
+How to verify the reset?
+Enter the username and password 
+Click on restbutton 
+Try to get username and password 
+If both are equal to null test case pass
+String testdata =driver.findelement(By.xpath
+(‘//*[@id=’sometext’])).getattribute(‘value’);
+ 5.get back ground color :
+String backgroudcolour =driver.findelement(By.xpath
+(‘//*[@id=’sometext’])).getcssvalue(“background-colour”);
+Fourth class for selenium webdriver:
+Handle alert box 
+Verify the text box
+//maximize the browser
+Driver.manage().window().maximize();
+//click search option
+driver.findelement(by.id(“”)).click();
+//handle alert you have to switch your fouces
+//predefind api are implemented by selenium pepole
+driver.switchto().alert().accept(); 
+//verify the alert text 
+Alert alert =driver.switchto().alert();
+syso(alert.gettext);
+string actualresult=alert.gattext();
+string expectedresult = “destination sources”;
+if(condtion){
+alert.accept();
+}else{
+syso(“test case fail”);
+//select droupdown
+new select(driver.findelement(by.id(“”))).selectvisabletext(“”);
+two types of alert:
+client side : we will not get property
+serverside : we will get property
+2.confirm box:
+driver.switchto().alert().accept();
+driver.switchto().alert().dismiss();	
+fivth hour of selenium webdriver:
+
+keyboard api :
+handling tap optation
+handling copy past
+//key are basically enum consupt
+//tap operatation
+driver.findelement(By.id(‘’).sendkeys(keys.Tap);
+//copy and past actation
+//enter the data on first textbox
+driver.findelement(by.id(‘text’)).sendkeys(‘selenium’)
+//copy the data  and past in text box
+driver.findelement(by.id(‘text’)).sendkeys(keys.control+”a”);
+//copy the data
+driver.findelement(by.id(‘text’)).sendkeys(keys.control+”c”);
+//past the data
+driver.findelement(by.id(‘past’)).sendkeys(keys.control+”p”);
+sixth hour:
+Drag and drop potation
+actation  builder = new actation(driver);
+driver.findelement(by.cssselesctor(“body)).sendkeys(keys.escape);
+webelement sources =driver.findelement(by.id(‘_svg’));
+webelement destination = dirver.findelement(by.id(‘_list’));
+builder.draganddrop(sources, destination).build().perform();
+seventh class of selenium webdriver:
+how to download file suing selenium webdriver?
+//enter the data java download in search box
+driver.findelement(by.id(‘”).sendkeys(‘java download’);
+//click on the enter optation in search box
+driver.findelement(by.id(‘”).sendkeys(‘keys.enter’);
+//click on the link 
+driver.findelement(by.id(‘”)).click();
+//click on the button
+driver.findelement(by.id(‘”)).click();
+//click on save button 
+this is window based  pop don’t excpect any property
+using selenium you cant handle window based popup 
+u can use 
+1.robot //built in java this is coming from awt java
+ 2.skiuli // download third party app
+3.autoit // this is based on vb this fail in auto intergration
+//handling window based control 
+Robot robotobj =new robot(); //you have created object to use that class
+robotobj.keypress(keyevent.vk_Tab);
+thread.sleep(5000);
+//click on enter
+robotobj.keypress(keyevent.vk_enter);
+how to handle pop up /multiple window using webdriver?
+//click on pop up potation
+driver.findelement(by.id(‘_sxdf’)).click();
+//click on credit card link which navigate for new tap
+//but it will open in new window selenium will fouces on same browser not on new window  that why its not clicking on new customer
+driver.findelement(by.id(‘_sxdf’)).click();
+//selenium people created api at run time for window
+//get parent window property
+string parentwindow =driver.getwindowhandle();
+syso(parenwindow);
+//get childwindow property
+for(string childwin: driver.getwindowhandles){ 
+syso(“childwindow” +chidwin)
+driver.switchTo().window(childwindow);
+}
+//this concept is called enhanced for loop or advance for loop
+//datetype temname :whatyou want to itearate
+for(string temp: a){
+
+}
+//click on new customer
+driver.findelement(by.name(‘surya’).click();
+//go back for the old window 
+//select aprent window
+driver.switchto().window(parendproperty);
+thread.sleep(5000);
+//click on register link
+driver.findelement(by.name(‘surya’).click();
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Data driven:
+This can be used for multiple data in one test case eg: we will creat one script for 20 user. tha 20 data will be stored in excel using poi jar file
+File the form asusal like name password and login 
+After that use 2 dimansial array 
+You should take only object type coz if you use string it take only  string or if you use int it will take only num but login bay be any type
+@DataProvider(name =wordpress)
+Public object [][] passdata(){
+  Object[][] data =new Object[3]rows[2]colums;
+//now create data
+Data[0]row[0]colume =”admin”; 
+Data[0]row[1]colume =”pASS”;
+Data[1]row[0]colume =”admin”; 
+Data[1]row[1]colume =”admin”; 
+
+Return data; 
+}
+So in actual script @test this will be dependent on dataProvider=”wordpress”
+Like this
+Public class wordpress{
+//Globale variable
+Webdriver driver ;
+@test(dataProvider=”wordpress”)
+//you have to the username and password to login form 
+Public  void logininfor(string username, string password){
+driver=new chromedriver();
+driver.findelement(By.id(“q”)).sendkeys(username);
+driver.findelement(By.id(“q”)).sendkeys(password);
+assert.asserttrue(driver.gettitle().contains.(“dashboard”), “user not able to login”;
+@aftermethod
+Public void down(){
+Driver.quit(); //you will get error coz webdriver will only assign in test annotation so use wedriver as globale keyword
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Testng  introduction :
+Why testng 
+How to install testng
+Annotation of testng
+Testng is actuall unit testing framework
+What is the use testng ?
+You can organize the test case
+1.1000 test suite
+500 = high priorty 
+We can execute selective  test case
+2.ingnore the test case
+3. precondition == 1.admin 2. Lead 3.viewer 
+You can have the setting that’s only for admin and lead but not for viewer 
+Postcondition
+4.report /test result
+5. verification 
+6. cross browser
+Annotation of testng
+@Test
+@beforemethod
+@aftermethod
+@beforeclass
+@afterclass
+@beforetest
+@aftertest
+@beforesuite
+@aftersuite
+How to install testng
+Go to eclipse than go for help in that you can see eclipse marketplace click than search for testng and downloads
+How to use annotation?
+First import testng annotation 
+Annotation means giving automatic instruction to compiler
+@test means it thing this as test case you can use many test
+@beformethod is used for precondition like browser running or webdriver set up
+@aftermethod is used for posconditon like quiting the browser or closing
+@berforeclass will execute very first and only once in the test case
+Only @test will execute but not before and after these are pre and poscondtion
+Before and after will only excute if there is @test if ont they will not exeute
+If you want to skip the test case 
+@test(enabled =false)
+
+
+
+
+
+
+
+
+Xpath
+There are two types of xpath 
+Absolute xpath means from root //
+Relative xpath means from beging to end 
+Absolute xpath 
+//tagname [@attribute name= value]
+//instead of tagname you can use *that’s spacifies all in tagname
+Input[@id =”lsd”]
+Parent child relation
+//parent tagname[@attribute name= value]/childname/chidnamae
+2.Table
+//tr[2]//td[3]
+
+3.//tagname[@attribute name=value][@attribute name=’value’]
+4.//tagname[@attribute name=’value’ or @attribute name=’value’]
+5.//tagname[@attribute name=’value’ and @attribute name=’value’]
+6.For dynamic tag use contains
+7.//tagname[@contains(@href= “forgotvalue”)][text()=post]
+8.//*[text()=’anytext’]//following::a[contains(href=”forgotvalue”)][tex()=’post’]
+9.//a[contains(text(),’dorgotpassword’)]
+10. //*[contains(@ id,’edit’)]
+11.//*[starts-with(@id, ‘edit’)]
+12 //*[text()=’forgotpassword’]
+
