@@ -1,0 +1,128 @@
+Java is both object and functional programming 
+
+to enable functional concept lambda expression came into java
+We can hold function by variable, We can call function inside function
+Lambda expression
+It's just an anonymous function/nameless function
+
+Not having a name, return type, modifiers
+Example
+()->{Syso("Hello world")};
+if it is one line we can remove {}
+
+(int a,int b)->Syso("Hello world"+a+b);
+(a,b)->Syso("Hello world"+a+b);
+we can also remove the int from code some time it can guse the variable type
+
+public int sequare(Int n)
+{
+return n*n;
+}
+(n)-> return n*n;
+
+We can remove the return type and if we have only one parenthesis 
+
+n->n*n;
+
+Conclusions
+----------
+can have any number of arguments, if have only one argument parenthesis are optional 
+
+
+How to call/Invoke lambda expression :
+
+Functional Interfaces
+
+Were ever Functions Interface are there we can only use Lambda expression
+
+
+The Interface doesn't contain the Method my implementation we get extra features such interface is called marker interface. We cant use a lambda expression 
+
+An interface that contains a single abstract method is called a Functional interface:
+
+1.8 Version onwards default and static methods in the interface
+
+The restriction is applicable only for the Abstract method
+
+
+@FunctionalInterface
+Interface Interf
+{
+ public abstract void m1();
+}
+
+The above is called a Functional interface 
+
+The advantage of using @FunctionInterface is that if use More the one abstract method it will give an error
+
+While using Extends in the Interface method name cant be different so it will give an error
+
+
+EG: without lamda expression
+Interface Interf{ public void m1():}
+
+Class Demo implements Interf{
+public void m1(){sop("M1 Implementation");
+}
+
+Class Test
+{
+Public static void main(String[] args)
+{
+Interf i = new Demo();
+i.m1();
+}
+}
+
+EG: WIth  lamda expression
+Interface Interf{ public void m1():}
+
+
+Class Test
+{
+Public static void main(String[] args)
+{
+Interf i = ()->Syso("M1 Implementatio");
+i.m1();
+}
+}
+
+
+How the code going to check the return type automatically
+
+EG: without lamda expression
+Interface Interf{ public void m1(int a,int b):}
+
+Class Demo implements Interf{
+public void m1(){sop("M1 Implementation"+(a+b));
+}
+
+Class Test
+{
+Public static void main(String[] args)
+{
+Interf i = new Demo();
+i.m1(100,200);
+}
+}
+
+EG: with lamda expression
+Interface Interf{ public void m1(int a,int b):}
+
+
+Class Test
+{
+Public static void main(String[] args)
+{
+Interf i = (a,b)->Syso("The sum of"+(a+b));
+1.add(100,200);
+}
+}
+
+
+
+
+
+
+
+
