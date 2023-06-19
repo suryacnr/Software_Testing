@@ -1,0 +1,176 @@
+Docker basics
+---------------
+docker version give you full details about dockers 
+docker -v  and docker --version gives you only the version number
+docker info gives you full details about what is runing and what is stopped and what images are there etc
+docker -- help this is used find if we dont know something of how is used to
+docker login  username suryacnr and password is adgjm..123 to login to sdocker
+Docker Images
+---------------
+docker images==> it shows if i have any image in my system it will show the images
+docker pull==> we can pull the images from docker hub if we dont have doceker images in CMD(if you specifie the version number it docker world it is called tag if you dont specifie tag it will take the latest version)
+docker rmi==> we remove the images from the CMD by specifing the image ID
+
+Docker containers
+-----------------
+docker ps==>it will give what all the list of contianers are running in my local sytem
+docker run ==>It will search if the particular image name is available in local system or not. if not go and pull from docker hub(and docker run -it image name it will start the continer and it will run backdround)
+docker start if we want to start the container after stopping we can start again by giver container id(we should keep the container id carfully)
+docker stop == to stop the continer we can giver docker stop container  id
+
+Docker System
+--------------
+docker starts ==> it will give you the statistic of the  docker image
+docker system df ==> how many image we have total, active ,how much size its, relibale or not
+docker system prune -f ==> it will remove all the stopped container
+
+
+We need the selenium standlone chorme, firefox and edge
+docker pull selenium/standalone-chrome
+
+
+to Create the continer and run the selenium chrome image need to specifie the image:  
+docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest
+Over eare -d denotes it will run in dackgroud and -p  4444 denotes selenium webdriver runs in that port and we can redirect to grid by -p 4444:4444 now it will run in grid then we can specife the parameters that is provided by selnium and specife the image name and version
+
+
+Selenium grid
+-----------------
+
+grid is  a component of selenium used for execuing test remotely
+
+Its kind of compartibility testing
+windows= ch, firefox, edge, safara,opera
+linus= ch, firefox, edge, safara,opera
+Mac = ch, firefox, edge, safara,opera
+if i run from local it will execute from all the remote mechine
+Local or from where we are executing is called hub(Master) remote is called node(Slave), we can have one hub and multiple node
+
+pre-requisites
+1.we should have driver & browser on local and remote systems
+2. we need to make local system as hub and then register all the vms with hub after register only we call it as node
+We need to download selenium standalone dependancy file
+We also need to download selnium standalone dependancy in VMs also(Node)
+3.write test case then execute on remote sytems
+
+To create the hub file go to the download location of selenium standlone jar file and execute the commend.$ java -jar selenium-standalone.1.4.jar -role hub 
+Copy the the following line after running the hub
+(Nodes should register to https://yourIp.4444/gird/register
+client should connect to https://yourip.4444/wd/hub)
+
+To run node in the sytem go to downloaded location of selenium standalone serveer and type $java -Dwebdriver.chrome.driver="Location of chrome driver" -jar selenium-standalone.jar -role node -hub https://yourIp.4444/gird/register
+
+In the above line dwebriver.chrome.driver the chrome will change baased on the broweser used 
+
+In test scripts we need to use 
+nodeurl =  https://localhost.444/wb/hub
+
+Desiredcapabiliites cap = desiredcapabilitites();
+cap.chrome();
+cap.setbrowsername("chrome");
+cap.setplatform(platform.wind10);
+driver = new remotewebdriver(cap, url);
+
+
+if we want run the code from windows you need to right click and run testng test
+if we want to run the code from linux you should have driver and go to that location and in cmd and type the above node in cmd and run then come back to eclipse and run testng test i
+
+the node url will change based on your ip address provided in hub
+nodeurl =  https://localhost.444/wb/hub
+Desiredcapabiliites cap = desiredcapabilitites();
+cap.firefox();
+cap.setbrowsername("firefox");
+cap.setplatform(platform.Linux);
+driver = new remotewebdriver(cap, url);
+
+
+selenium gird with docker
+------------------------------
+
+to run the selenium gird wiht docker
+ first approch is network concept
+ 2 approch is yaml file 
+ 3 approch is link
+
+ we are going to use 2 approch
+
+
+go to this url for more details
+https://github.com/SeleniumHQ/docker-selenium
+
+1.Step 1: copy the verison 3 file and save in project directory.
+change the verison to latest
+2.Step 2: run the docker-compose.yaml
+ $docker-compose up
+Note: go to the particular location and run 
+
+3.to check the status of node
+ https://localhost.4444/grid/console
+
+ to increase the node run the following commend
+
+ docker-compose scale  chrome=3(1 is already there if i want 2 more nodes)
+
+4.give the desiredcapabilities and url the url must be hub url that is equals to https://localhost.4444/wd/hub
+
+
+After running all the codes and clean up the grid or storp need to run the file location of docker-compose.yml
+
+$ docker-compose down
+
+
+Automate all the above 4 steps:
+------------------------------------
+
+
+To autoamte all the above 4 steps 
+
+Create new file in the project as run.bat and put the yml file in the prjoct location
+ In the file type the following
+
+ cd specifie the project location
+ docker-compose up
+
+ click on save -- it will start the docker
+
+ create the new file stop.bat
+cd specifie the project location
+ docker-compose down
+
+click on save -- it will stop the docker
+
+Instead on running the bat file manually we can create java code to start and stop the docker
+
+@BeforeSuite or beforetest
+void startDockergird(){
+	
+	Runtime.getRuntime().exec("cmd /c start Specifie_the_of dockerstart.bat file");
+	Thread.sleep(15000);
+}
+
+@AfterSuite or aftertest
+void stopDockergird(){
+	
+	Runtime.getRuntime().exec("cmd /c start Specifie_the_of dockerstop.bat file");
+	Thread.sleep(5000);
+	Runtime.getRuntime().exec("taskkill /f/im cmd.exe"); //close the cmd
+
+}
+
+
+Then we need to create the class in testng.xml file for the above and run the testng.xml ( so there will not be human intrection for running the docker file)
+
+we can also run pom.xml file
+
+to run in pom we need to add <build> tag before <dependencies> tag. To add maveen plugin inside build
+
+<build>
+<plugin>
+  maven-comiler-plugin
+  maven-surefire-plugin
+  we can get from maven official website
+</build>
+</plugin>
+
+While running the pom.xml make sure the testng.xml file inside the surefire-plugin is same as file name you created in project
+
