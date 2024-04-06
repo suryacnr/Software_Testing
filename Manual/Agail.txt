@@ -1,0 +1,104 @@
+Agile model/ agile methodology /agile process
+
+It is an iterative and incremental approach
+iterative means the same process we are going to conduct again and again
+incremental approach means keep on adding new modules are new feature in existing moduel
+
+Agile principle
+customer no need to wait till complete software is developed
+we develop, test and release the piece of software to the customer with few number of features.
+we can accept/accommodate requirement changes
+
+There will be good communication customer developer tester and BA
+
+
+Advantages:
+requirement changes are allowed in any stages of development (or) we can accommodate requirement changes in the middle of development
+Releases will be very fast (weekly)
+customer no need to wait for long time
+good communication between team
+it is a very easy model to adopt.
+
+
+
+Disadvantages;
+ less focus on design and documentation
+
+difference between agile and scrum
+scrum is a framework through which we develop and test the software an build the software product by following agile principles.
+
+Agile is basically defien the princples, how the process should be and to follow the principle. scrum wil help us to follow the principle
+
+
+scrum
+-----------
+Scrum team we have product owner, scrum manster, developing team and testing team
+
+Product owner:
+ defien the features of the product== he will contact to the customer and take the requirment
+ Prioritize features according to the market value
+ Adjust features and priority every iteration, as needed
+ accept or reject work resuls
+
+Scrum master
+
+  the main role is facilitating and driving the agile process
+
+
+
+scrum terminology
+User story: A Feature/module in a software (its a smaller requirment)
+Epic : is collection of user stores (its a larger requirment)
+Product backlog: contains list of user story prepared by product owner
+sprint : period of time to complete the user stores, decided by the product owner and team usually 2-4 weeks of time
+Sprint planning meeting: meating contacted with a team to define what can we delivered in the sprint and duriation
+sprint backlog: list of committed stories by Dev/QA for specific sprint
+scrum meetin : meating conducted by the scrum master everyday 15 mins. called as stand up meeting
+                what did you do yestarday
+                what will you do today
+                are there any impediments in your way
+sprint retrospective meeting: after completion of every sprint
+                              here we will discuse about what went well and what went wrong any other improvment we have to do for upcoming sprint
+
+story point: Rough estimation of user stories, will be given by Dev and QA in the form of fibonacci  series
+
+Burndown chart: shows how much work remaning in the sprint. maintained by the scrum master daily
+
+The Agile scrum framework at a glance
+
+the product owner will get requirment form stakeholders/executives/customer then he will prepare prodcut backlog
+Once the prodcut backlog is ready sprint planing meeting will happen 
+Sprint backlog which team will be comied than the sprint will start, usual 2 to 4 weeks
+every 24 hrs scrum meeting will be conducted by scrum master, based on this meeting he wil prepare burdown chart
+After finished work sprint review will happen(in sprint review we will check all the bugs are closed or not and all test cases are executed
+We will give to demo to product owner once accepted it delivered to owner than we will have sprint retrospetive
+
+
+what are the artefacts and cermonies
+artefacts
+product backlog
+sprint backlog
+burn down chat
+
+cermonies
+sprint planing
+daily  scrum
+sprint review
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
