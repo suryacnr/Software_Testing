@@ -1,0 +1,33 @@
+If status code we not only validating 200 OK, for one request we need to check if enter valid details it should give 200 and if i didnt authoticate for the particular request it should give 401 unauthraized request like we need to check for the all the posiable scenarios in the particular api request. In body if e miss sum header or body is not formated then we will get 400.
+validate Response values
+pm.test("Validate JSON value",function(){
+	const response = pm.resposne.json();
+	console.log(response);
+	pm.expect(response.fetaures[0].projectID).to.eql(10001); //to.be.a('string');
+})
+we cant able to declare the const outside the method if you created const inside the method
+
+if we  want to use the status code 200 for all the request we  write the test at Folder level based on the requireemnt  for not duplicating the same code again and again
+But we should not define the test at collection level we may face the problem
+
+
+
+
+
+
+Petstore API
+
+petstore swagger api documentation need to analyze that document
+how to understand the swagger api document
+we need to import the curl into postman 
+copy the curl lines and create new collection insite collection select import and select raw test and past
+
+over here we are creating user take that api/then get user by name/update user by name/delete user by name
+store all the collect variable in prequestscript  of  create user api(code in prerequest) and then access then from all the get user/ update user and so on
+
+for deleting the user unset all the variables pm.collectionVariable.unset("firstname");
+
+you can run the collection and get the report from json and later we will use HTML report for the result
+
+In api you can create thr api document and publish this document. for that right click on collection and then click on view document. postman will create the document and publish by clicking pulish button on the right top corner.
+in posstname tool there is no option to validate the XML body but we can use one method called var jasondata= xml2Json(responseody); //after as usual we can validate it how we validate it in jsonbody

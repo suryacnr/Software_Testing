@@ -1,0 +1,341 @@
+
+Java Script&JsonPath
+--------------------
+
+console.clear();//will clear the console
+console.log(); //its print statment and // its the comments the code
+ 
+ do define the variable there are three keyword
+ var,let,const eg: var name ='surya';
+ the main differnece between var and let is using var you can hold n number of same variable name 
+ but in let you cannt hold varaiale name with same name eg : var firstname ='surya';
+ var firstname = 'vishnu'; is acceptable but in let we cant declare the same varaible withn the block or method  same goes for const
+ In java there is also arthimetic operator like java +,-,/,*,%
+ Assignment operator
+ +=, means if we have var x=10; then you say x+=5; it will print 15 coz it will print assign 5 to x value 
+ x++ //6
+ ++x //5 
+ comparission operator
+
+ like <,>,<=.>=,==,!=
+ = is an assignment operator
+
+functions 
+---------
+ what is function is to used for reusing the same code
+ to define the function in java scripts
+ function M1(){
+ //code you want
+ }
+ and call the function by M1(); as like java
+ parameters and arguments aare different
+ if we dine M1(test); test is parameters
+function M1(course){
+//jS temepalte start with ` and ends `
+ console.log(`welcome to api testing ${cource}`);
+ }
+
+ function return type
+
+function M2(a , b){
+
+let sum=a+b;
+return sum // we dont need to change anything in the top like java
+ 
+ }
+let a=10; let b=20;
+ console.log(`The sum of X and Y is ${M2(x,y)})
+
+Arrow functtion
+----------------
+
+let addition =(a , b)=>{
+let sum=a+b;
+return sum 
+ }
+
+if we have one line of code
+let addition =(a , b)=>a+b;
+
+call back function
+let multiply =(a,b)=> console.log(a*b);
+let add =(a, b)=>console.log(a+b);
+
+fucntion test(testname,callback,a,b){
+    console.log(testname);
+    callback(a,b);
+}
+test("this is first test", add,10,20);
+
+to create object we need to create the variable as const because it will not change const student={
+    studentname:"john",age: 10
+};
+how to access the objects 
+using . notation
+Console.log(student.studentname);
+Console.log(student["studentname"]);
+
+why need to bracket notation if there is any space between the studname it will not give any error but in . notation it will give error
+
+Nested object
+student={
+    studentname:"john",age: 10,scores:{
+    maths:80,comp:90
+    }
+};
+Console.log(student.studentname.math);
+
+java script object method
+const student={
+    studentname:"john",age: 10,scores:{
+    maths:80,comp:90
+    },
+    welcome:function(){
+    console.log("welcome to RCV Acdemy"+this.studentName);//this referes to current oject were ever method you called this used because if the student refernce name changed in future we change in all the places which is replected instead we can use this keyword
+    }
+};
+
+student.welcome();
+
+Json.stringify() and Json.parse()
+-----
+JSON.stringify(Student); //this will convert the java script value to  javascipt object Notation
+let studentjson =JSON.stringify(Student);
+
+Json.parse() //is used to convert the JSON into java script before accessing the json values for that we need to JSON parse 
+let studentobj=json.parse(studentjson);
+
+postman text() and json()
+pm oject will give all the variabl and method
+pm.response.text();//the responce we get from postman that can be stored in text but we can only sent to other and store it
+pm.response.json(); // //the responce we get from postman that can be checked (eg:id value or anything) using  that we can access that properity
+let rep =pm.response.text();
+let repsonse1 =JSON.parse(rep);
+console.log(reponse.studentname);
+but this is longer way  instead of this we can use json
+
+let rep =pm.response.json(); //it will give you java scipt object itself
+console.log(rep.studentname);
+
+Java script array
+------------
+In array we can have int,float,string to add all the data type together to create array we use const students =[]; we add or remove from the array
+to access array console.log(students[0]);
+index start with zero
+
+We can add multiple aojects inside array
+
+const student=[{
+    studentname:"john",age: 10},
+    {scores:{
+    maths:80,comp:90
+    }}],
+    and also within object we can have also another array
+console.log(students.length)// which is build in option in array
+console.log(student.push('RSV')); //which is used add alue
+console.log(student.pop());//it will poput and it will be reomved since it is poped out i can also store thst
+console.log(student.sort();// will sort in ancedning order
+
+if else
+-------
+syntax: if(condition){
+    //code
+} //eg let count =5; if(number<=5){
+    console.log("the number is greater then 5")
+}else if( number === 5){ //=== equals is strick comparision where it will compare the data type and the value both are same or not
+    
+}
+else{
+    console.log("the number is in not less then 5")
+}
+
+there is also nested if else we can use
+For loop
+---------
+for(initialEXp;condition;updateExp){
+    //condition
+}//eg lent num=[5,2,3,4];
+for(i=1;i<=num.length;i++){
+    console.log(num[i]);
+
+} //if we have an array and want to print the all the values from array then we can use for loop in JS
+
+How to find a value in javaScript Array?
+--------------------
+const students =['josh','tom','ram','sam'];
+first option is above for loop 
+for(i=1;i<=num.length;i++){
+   if(Students[i]==='TOM') // to check the specified value is present or not
+    console.log(num[i]);
+
+}
+but there are more easier way like include
+1.students.include("provide your own value ");//means provide the Expected value
+2.students.indexOf("Sam")//it will give the indexvalue of array
+3.Students.find(value)=>value==='Tim'//its is shortcut for callback function(find students where students equal tim ) value is not static we can give any with which i not even in the student array list
+4.students.filter() //find are same
+
+for each loop
+
+students.foreach(function student(item){
+    console.log(item);
+})
+students.foreach((item)=>{
+    console.log(item);//iteam is value of array
+})
+
+const resp = (pm.response.json()).data(means array name)
+console.log(resp)//which will give only data in response
+ 
+ for(i=o;i<resp.length;i++){
+ if(resp[i].first_name==='Eve'){
+ console.log(reps[i].email)
+ }
+ }
+
+ resp.forEach((emp)=>{
+ if(emp.firstname==='Eve'){
+ console.log(emp.email);
+ }
+ })
+
+ you can do same thing with find
+ resp.find((emp)=>{
+ if(emp.firstname==='Eve'){
+ console.log(emp.email);
+ }
+ })
+
+
+
+JSON data type
+---------------
+in json we need to represent key and value pair.
+Key is always included in double qutation
+string 
+
+{"name":"Jhone","name1":"surya"}
+Number
+{"age":12,"age":23}
+boolen
+{"status":true}
+
+Array
+if we have multe set of data for one variable we can use [] which is called as arry
+{
+    "phone":[123456,09877656]
+}
+
+object
+to store student data
+
+{
+"Students":[
+{
+    "Sid":10,"sname":"surya"
+},
+{
+    "Sid":1,"sname":"sur"
+}
+
+]
+    
+}
+
+Json path
+its a query language for JSon
+Lets extract the segment of information from json document json is simular to xpath
+Student[0].sid== in which order it is present then same order we have to specifie the order
+
+Instead of writing jsonpath manually we can use jsonpathfinder.com and jsonpath.com
+
+Jsonpath notation is used to fetch nodes and their connections to adjacent nodes in Json document
+
+json path uses two types of styles of notation
+$ represent root node
+
+1.Dot notation
+Example $.data[0].gid
+2.Bracket notation 
+  Example: $['data'][0]['grid']
+ both represent or give the same result
+
+
+ Json operators
+
+ $ 
+ @- represent the current node which means we can spesifi the node name by @
+ * wildcard :Return all theelements
+ ? to quary all the items that meet certain search
+ . to fetch the child 
+ [] to speifie the index
+
+ : to get list of array based on index eg: $.data[0:2] which will give two arrays not the 3 one
+ :N to display first n number or array eg:$.data[:3] which will display the first 3 index
+
+-N: to display last n number or array eg:$.data[-3:] which will display the last 3 index
+
+n,n,n to display the multipe elements in the array eg:$.data[3.4.6]
+
+* to display all the elements eg:$.data[*].name
+
+
+Filters
+--------
+
+.. by using this it will give all the name related to the search eg: $..name 
+it will give all the from the json file
+
+&&
+||
+
+
+Petstore API
+
+petstore swagger api documentation need to analyze that document
+how to understand the swagger api document
+we need to import the curl into postman 
+copy the curl lines and create new collection insite collection select import and select raw test and past
+
+over here we are creating user take that api/then get user by name/update user by name/delete user by name
+store all the collect variable in prequestscript  of  create user api(code in prerequest) and then access then from all the get user/ update user and so on
+
+for deleting the user unset all the variables pm.collectionVariable.unset("firstname");
+
+you can run the collection and get the report from json and later we will use HTML report for the result
+
+In api you can create thr api document and publish this document. for that right click on collection and then click on view document. postman will create the document and publish by clicking pulish button on the right top corner.
+in posstname tool there is no option to validate the XML body but we can use one method called var jasondata= xml2Json(responseody); //after as usual we can validate it how we validate it in jsonbody
+
+
+
+
+XPath	JSONPath	Description
+/	$	the root object/element
+.	@	the current object/element
+/	. or []	child operator
+..	n/a	parent operator
+//	..	recursive descent. JSONPath borrows this syntax from E4X.
+*	*	wildcard. All objects/elements regardless their names.
+@	n/a	attribute access. JSON structures don't have attributes.
+[]	[]	subscript operator. XPath uses it to iterate over element collections and for predicates. In Javascript and JSON it is the native array operator.
+|	[,]	Union operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set.
+n/a	[start:end:step]	array slice operator borrowed from ES4.
+[]	?()	applies a filter (script) expression.
+n/a	()	script expression, using the underlying script engine.
+()	n/a	grouping in Xpath
+
+
+XPath	JSONPath	Result
+/store/book/author	$.store.book[*].author	the authors of all books in the store
+//author	$..author	all authors
+/store/*	$.store.*	all things in store, which are some books and a red bicycle.
+/store//price	$.store..price	the price of everything in the store.
+//book[3]	$..book[2]	the third book
+//book[last()]	$..book[(@.length-1)]
+$..book[-1:]	the last book in order.
+//book[position()<3]	$..book[0,1]
+$..book[:2]	the first two books
+//book[isbn]	$..book[?(@.isbn)]	filter all books with isbn number
+//book[price<10]	$..book[?(@.price<10)]	filter all books cheapier than 10
+//*	$..*	all Elements in XML document. All members of JSON structure.

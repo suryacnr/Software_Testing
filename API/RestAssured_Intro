@@ -1,0 +1,250 @@
+RestAssured
+------------
+
+RestAssured is an API/Library(which is like jar file) through which we can automate reset API(Only REST API).
+
+Pre-requisites:
+1.Java & Exlipse
+2.TestNG
+3.Maven
+
+dependenices files
+
+1.io.rest-assured 
+2.json-path
+3.json
+4.gson
+5.json-schema-validator
+6.java9 and above
+7.testng
+8.scribejava-apis //which is used generate random test data
+9.XML-schema-validator
+
+Automate http request
+ get
+ post
+ update
+ delete
+  by default rest assured follows BDD style Begaviour driven devlopment approch
+
+  gerkin lagnuage it use some keywords
+these are methods
+-----------------
+given() //when ever sending api request there are pre-rquest required(like header,cookies auth, body, parameters etc)
+
+when() // all the request url will be keepen in when like (get,post. put, delete)
+then()// all the validation can be keepen in then. there is also one more method which is AND() which will be used in part of then which means if we have multiple  validation then we can use AND()
+the automation test case can be dividet into above 3 session
+
+public class Test(){
+    
+    //to use this keywords we need to import static which usally we will havesuggestion for import but if it is static we have to find out and import
+    //when and then are inbult method of given to access when() and then() need to include .when() and .then() given is option if there is nothing to specifie. if you remove given then you can remove . in when
+    
+    @Test(@priority=1)//if we run mutliple test we can set priority
+	public void getUser(){ //this is for get users
+	given() 
+
+	.when()
+	.get("URL")
+
+
+	.then()
+	 .statusCode("200")//validation 
+	 .body("jsonpath").equalTo("your condition") // validating the page values
+	 .log().all(); // which will print all response in the console only for the last line we have to put semicolane
+	}
+
+	 @Test(@priority=2)//if we run mutliple test we can set priority
+	public void createUser(){ //this is for post users
+
+	//we need to prepare the test data for body for that we have better aproach but as of now we can use hashmap but it is not recommented
+	Hashmap mp = new Hashmpa();
+	mp.put("name","jjohn");
+	mp.put("id","123"); //now we have genrated data by using hash map now we have to use them
+	given() 
+       .contentType("application/json")
+	   .body(hm)
+	.when()
+	  .post("URL")
+
+
+	.then()
+	 .statusCode("200")//validation 
+	 .body("jsonpath").equalTo("your condition") // validating the page values
+	 .log().all(); // which will print all response in the console
+	}
+
+    int id;
+	@Test(@priority=3)
+	public void getID(){ //create global variable int id;
+
+	Hashmap mp = new Hashmpa();
+	mp.put("name","jjohn");
+	mp.put("id","123"); //now we have genrated data by using hash map now we have to use them
+	id=given() 
+       .contentType("application/json")
+	   .body(hm)
+	.when()
+	  .post("URL")
+	  .jsonpath().getInt(id); //we are getting and the id from repsonse and storing in the given() method
+
+
+	}
+
+	@Test(@priority=3, depensonMethod =getiD)
+	public void updateUSer(){ //create global variable int id;
+
+	Hashmap mp = new Hashmpa();
+	mp.put("name","jjohn");
+	mp.put("id","123"); //now we have genrated data by using hash map now we have to use them
+	id=given() 
+       .contentType("application/json")
+	   .body(hm)
+	.when()
+	  .put("URL"=id) //we are getting the id from create request and using them for update
+	  
+	.then()
+	 .statusCode("200")
+	 .log().all();
+	}
+
+	//use for delate same as get 
+
+}
+
+
+Session 2
+-----------
+How many ways we can generate post request?
+1.Hashmap
+2.org.json library
+3.using POJO class // plain old java object this most famaus way
+4.using external json file
+
+1.Hashmap
+void create hashmapdata(){
+	Hashmap mp = new Hashmap(){
+    mp.put("name","sim");
+    mp.put("location","India");
+    mp.put("phonenm","2345678909");
+
+    String courcesArr []={"C","C++"};
+    mp.put("cources",coucesArr);
+    given()
+    .contentType("application/json")
+	   .body(mp)
+    .when()
+      .post(ur)
+    .then()
+      .statusCode("201");
+      .body("key" //and not only key if we have complaz we need to specifie complete jsonpath, expected value) //.body("name",equalTo("sim"))
+       .body("location",  equlaTo("India")) 
+       .body("cources[0]",equalTo("C"))
+       .log.all();
+	} //This hashmap is sutable if we have small set of data
+
+
+}
+
+2.org.json library
+prerequesites is we need json dependiences
+//for json key must always in double couts but value we dont need " " for numbers,boolean,float etc
+
+void createORGJSONdata(){
+	JSONObject mp =new JSONObject();
+    mp.put("name","sim");
+    mp.put("location","India");
+    mp.put("phonenm","2345678909");
+
+    String courcesArr []={"C","C++"};
+    mp.put("cources",coucesArr);
+    given()
+    .contentType("application/json")
+	   .body(mp.toString()) // we need to convert the data into string formate coz we are creating data by jsonobject
+    .when()
+      .post(ur)
+    .then()
+      .statusCode("201");
+      .body("key" //and not only key if we have complaz we need to specifie complete jsonpath, expected value) //.body("name",equalTo("sim"))
+       .body("location",  equlaTo("India")) 
+       .body("cources[0]",equalTo("C"))
+       .log.all();
+	} //This hashmap is sutable if we have small set of data
+
+	
+}
+
+3.USING POJO
+
+//create POJO_post class
+ String name;
+ String location;
+ String phone;
+ String cources[]; //for very varaible we need to create getter and setter method to generate getter and setter select all the varaiable and right click go to scources and click generate getter and setter 
+
+// what will setmethod do it will take one parameter and it assign the value to class variable
+public void setName(String name){
+	this.name =name;
+}
+// will get the value form the varaiable
+public String getName(){
+	return name;
+}
+//like above set for all the varaiable by manually or automatically
+
+//create object for the above class in the test method
+@Test
+void createPOJOdata(){
+   //creating pojo class object
+   pojo_post pg = new pojo_post();
+   pg.setName("sim");
+   pg.setlocatio("India");
+   pg.setphone("123345678");
+   	String courcesArr []={"C","C++"};
+   	pg.setcources(courcesArr);
+
+
+
+    given()
+    .contentType("application/json")
+	   .body(mp) 
+    .when()
+      .post(ur)
+    .then()
+      .statusCode("201");
+      .body("key" //and not only key if we have complaz we need to specifie complete jsonpath, expected value) //.body("name",equalTo("sim"))
+       .body("location",  equlaTo("India")) 
+       .body("cources[0]",equalTo("C"))
+       .log.all();
+	} //This hashmap is sutable if we have small set of data
+
+	
+}
+
+
+4.using external Jsonfile
+ //if we external json file in the project 
+
+void createjsonfrom Externaldata(){
+	File f =new File("./location of the file");
+	FileReader Fr = new FileReader(f);
+	JSONTokener jT = new JSONTokener(fr);
+	JSONObject jO = new JSONObject(jT);
+	
+
+    given()
+    .contentType("application/json")
+	   .body(mp.toString()) // we need to convert the data into string formate coz we are creating data by jsonobject
+    .when()
+      .post(ur)
+    .then()
+      .statusCode("201");
+      .body("key" //and not only key if we have complaz we need to specifie complete jsonpath, expected value) //.body("name",equalTo("sim"))
+       .body("location",  equlaTo("India")) 
+       .body("cources[0]",equalTo("C"))
+       .log.all();
+	} //This hashmap is sutable if we have small set of data
+
+	
+}

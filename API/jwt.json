@@ -1,0 +1,45 @@
+{
+
+	"students": [{
+
+	   "id": "1",
+
+	   "name": "",
+
+	   "location": "india",
+
+	   "phone": "",
+
+	   "courses": ["java","selenium"]
+
+	 },	
+
+     {
+
+	   "id": "2",
+
+	   "name": "",
+
+	   "location": "india",
+
+	   "phone": "",
+
+	   "courses": ["java","python"]
+
+	 },	 
+
+	 {
+
+	   "id": "3",
+
+	   "name": "",
+
+	   "location": "india",
+
+	   "phone": "",
+
+	   "courses": ["sql","python"]
+
+	 }]
+
+	 } 

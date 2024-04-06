@@ -1,0 +1,79 @@
+Api chaining
+-------------
+if we have two apis for the first api we get and response for the api taking that response and setting in 2 api request it is called api chaining
+
+eg if we create the user in first api and in response we get userid for the user.
+
+and viewing the details of that user by sending the userid in the request in secound api
+
+sent the post request to create new user then store all the response in varaiables
+var jsondata =JSON.parese(responseBody);
+
+form here we have extract the id using json path.
+
+jsone.id
+
+Then you can create env varaiable
+pm.environment.set("Id",jsondata.id);//while you are  creating env variable if it is already there with same name it will overide the new one.
+
+then you can see the student details using get request dynamically by providing the env variable which was created on post request above 
+eg:https://request.in/user{{Id}}
+
+you can use this same for delete request.
+
+Simple Chaining concept
+Post request create user with name,gender,email etc then response with id
+
+using that id we can view the user details in get request
+using with same id we can update the user detials in put request
+again with using the same id we can delete the user in delete request.
+
+There will be problem if we are running the abovee request multiple times coz we can't use the same data again and again for that we have create the data automatically.
+
+
+How to create Authendication.
+
+Gorest
+Use the authendications which procvided by the third party website there are some type of authdendication for now we can bearar tolen
+
+we can create authendication at collection level and in request level also but it is recommented to create a varaible and then use that in the authrization in collection level or request level as part of your requirement.
+
+if you pass the auth at collection level you have to provide "inherit auth from pareent" in the request level for all the request in the collection.
+
+
+To genrate the data randomally we have to write the scripts in pre-request scripts.
+
+var random = Math.random().tostring(36).substring(2);
+var username = radom;
+var email = radom+"@gamil.com";
+
+Once created the variables make them as env variables
+
+pm.env.set("name",username);
+pm.env.set("email",email);
+
+once we created we can use them inside the body
+
+eg: name:"{{name}}"; // put "" when ever using in varaiables in body.
+
+
+Once you completed the post request in get request you have to compere the data eg: name,gender,email must be same as after creating the user it must be visable same as in get request.
+
+//we can come in two way using env or hardcorded value
+
+
+pm.test("values of json fields or data",()=>{
+var response=pm.response.josn();
+var id =pm.environment.get(userid);
+pm.expect(response.id).to.eql(id);
+}
+);
+
+after completeing executing you can unset all the variables in test tab.
+
+Conducting API testing using tools such as Postman, SoapUI, and RestAssured
+Good experience on Continuous Integration Tools like Jenkins.
+Excellent experience with source version control tools such as TFS&Git
+
+
+

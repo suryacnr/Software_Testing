@@ -1,0 +1,117 @@
+Session 3
+1.path &quary parameter
+
+we can define the path and parameters in dynamically instead of hardcording because we can recuse the same code in some other scripts
+
+
+@Test
+void testpathparamAndQuaryparam(){
+	given()
+	//https://toolsqa.com/search?keyword=tool
+	//we can define the path  parameter in given() method use .pathParam()
+      .pathParam("req","Search") //we can define them by key and value. key can be userdined were value must be "serach" from the above url
+      //question do i need to use only search or if there is any other path  specified before the search do i need to include that to
+      //yes you denfine if there is one path before the search you can define in pathParam()
+
+      //we can defineby quary parameter in the given() method use .quaryParam()
+      .quaryParam("keyword","tool") //if the value is in int we dont need to give double quotes to value in QP
+      //we can define one or more paramether by adding extra .quaryParma()
+
+
+	.when()
+	 .get("https://toolsqa.com/{{req}}") //we dont need to define quaryparam in the url but we need to define path param in the url QP will be automatically taken in runtime 
+
+	.then()
+      .statusCode()
+      .log.all();
+
+}
+
+
+2.Cookies
+  we need first check what all the cookies are creating
+
+
+      given()
+
+      .when()
+          .get("url")
+      .then()
+          .log().all();    
+
+
+ Now we check the cookie in then() method
+        
+
+           given()
+
+      .when()
+          .get("url")
+      .then()
+          .cookie("key","value") //you define the cookie and is value to check the codition. we can add how much condition or cookies we can't
+          .log().all(); 
+
+Store the key information in varaiable
+      Response res=  given()
+
+      .when()
+          .get("url") //you can store all the resposnse in the varaiable of given() method
+       //get signel cookie info
+      String cookie_value=res.getCookie("Name of the cookie") //key of the cookie should be set here and store them in string
+       //get all cookie info
+       Map<String,String> cookie_values= res.getCookies();
+       // use look statement to print
+       Syso(cookie_values.keySet()); //like this you can print all the values of cookies using ValueSet();
+
+       for(String valu:cookie_value.keySet()){
+       syso(valu);
+       }
+
+
+
+
+
+3.Header
+      we can validate content type or content value or servers etc from the headers
+
+       given()
+
+      .when()
+          .get("url")
+      .then() //if you have multiple validation we can sperate them by .and() this is option
+        .header("content-type","application/json")
+        .and()
+          .log().all(); 
+
+     //get sigel header info
+       Response res=  given()
+
+      .when()
+          .get("url")
+      String hed=res.getHeader("content-value");
+      syso(hed);
+
+      //get all header info
+        //get sigel header info
+       Response res=  given()
+
+      .when()
+          .get("url")
+      Headers hed=res.getHeaders("content-value"); //this is not hashmap but still it store value in key and value par
+      for(Header he:hed){
+      syso(he);
+      }
+
+
+      this may be usefull in advance case but not in all case
+
+      
+how many ways we can write log
+   for this we have 
+       log().all() // this will print all the information of the response such as head,cookie,response,time etc
+       log.header() // this will print only header related information in console
+       log.body() //which will print only cookies from response
+
+
+Parsing response data/validation
+

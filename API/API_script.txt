@@ -1,0 +1,117 @@
+Pre-request script
+
+before starting the script pr-request will be executed.
+
+pre-request---->request---->response---->Tests
+
+pre-requests and test are available in three level
+
+collection
+folder
+request
+
+flow for executing the pre-request and test would be
+
+Collection pre-request-------->folder pre-request---------->pre-request---->request---->response---->Collection Tests----->Folder test-------->Test.
+
+
+In the above flow if you have many request then for each request the collection and folder pre-request and test will execute each and every time.
+
+why we use pre-request?
+
+let say if we requesting post in that we have to write the write the name,email, phone etc. in request boady(this is called hardcoarding)
+if you want to create the name,email, phone dynamically you can go for pre-request.
+
+if you are sending rquest and you require some things that needs before the request then we go for pre-request.
+
+Variable
+---------
+
+what?
+why?
+where?
+
+
+variable means which can store some data 
+some time we have repitation which is used many time then we can store in variable
+To avoid duplicates we need variable
+
+
+variables can create in multiple levels
+
+scope
+-----
+global
+collections
+environment
+local
+data variable
+
+
+
+how to create and how to access the variable?
+
+Workspace-->collections---->Folders--->requests
+
+gloable variable as over all workspace access means access in all collection,folders request
+In the right corner in the top of postman we enviroment quick look
+click on the enviroment quick look then you can see gloable variable
+click on add and enter or give the name to the variable  in inital value give the same value as current variable.
+then were ever you want to use the variable you can access by give {{}} inside that give the variable name eg:{{url_global}}.
+
+Collection variables are access able with in the collection only.
+
+click on collection three dots and click on edit and you can see the auth pre-request test and variables 
+under variables you careat the variables
+
+
+
+Environment variables as used in different evervirement like dev,QA, production when ever you run the request and you want to switch to that enviroment and run the request.
+
+Env is also kind of global variables.
+first we need to create the environemnt with env you cant create env variables
+
+how to create the env?
+same globale variable you can create new env by clicking on click on the enviroment quick look then you can see env variable
+click on add and enter or give the name to the variable  in inital value give the same value as current variable.
+
+to access env variable
+
+you can access by giving {{url_env}} but the problem is you have to swtich to that environment before accessing that variables.
+
+Local variable 
+we can create at request level we define in pre-request scripts
+
+pm.variables.set("url_local","value of url");
+
+
+data - variable will be created in excel file/csv/txt file the external file.
+
+
+we can create global variable and env variaable in pre-request scripts
+
+pm.globals.set("userid","2");// once it is created it can be accessed in another request also.
+pm.environment.set("userid","3");// we can create this variable only if we have existing  env like QA or dev or any env.
+
+pm.collectionVariables.set("id","value");
+
+To delete the variables we need to write in Test tab in collection level,folder or request
+
+pm.globals.unset("name of the variable");
+
+same for env and collection variable  as per the above comments.
+
+how to get the variable data means store the data or  print the data in test tab.
+
+var id= pm.globals.get("userid_global");
+console.log(id);
+
+same for env and collection variable  as per the above comments
+
+
+so for we used 
+set
+unset
+get 
+methods for variables.
+
