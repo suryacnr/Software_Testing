@@ -1,0 +1,115 @@
+BDD
+
+Test driven development (TDD) VS Behavior driven Development(BDD)
+
+Test driven development- 1.framework which we used preciously is not understandable for stackholder or third person 2. we write the test case first manually and then we write each different methods for that test case. this will be understandble by only developers. this is called TDD the disadvance is only tech people will understand.
+
+
+We go for BDD this will be understand by non tech people and tech people.
+there are multiple tools for BDD such as cucmber sepcflow 
+where TDD foucs on functional test case  where we will be covering all the validation and in detail but in  BDD focous on Acceptance test case such user flow
+acceptance test case will be preapred by BU people or BA/stack holders.
+
+Larger requirement means epic and small requirement means story which will be prepared by BA/Product owner/product manager.
+
+BDD framwork ensure that the QA has covered all the requirement which is given by BU people.
+
+Cucumber is build in framewok which is used to develop BDD test case.
+
+
+Cucumber Feature file:
+----------------------
+all the test case or test scenario will writen in feature files in plain text and the starting of cucumber is feature file.
+Gherkin --> is the language which contains certain number of keyword. 
+In feature file we have name of the file and scenario 1, scenario 2etc.
+ we can have multiple feature file this feature file can be created by any one QA/BA/PO. this will be created using gherkin langauge.
+ the extendsion of the feature file .feature 
+
+
+ Step definition:
+ -----------------
+
+ for the particular feature we will be having step definition java file and we will mantain all test steps in that file.
+ In feature file we will be having steps along with sceanrio for each steps we will creating differnet method i step definition sheept so we will not miss any steps.
+
+
+ Test runner:
+ ------------
+ if we have single feature file we can run dirrectly from the feature file but if we have multiple feature file we must run from test runner junit file.
+
+ We will specifie the feature file location and step definition file location.
+
+ I can create all the feature file anyware like project level main or test etc.
+
+ Feature: Describes a high-level feature or functionality of the software. It is the starting point of a Gherkin file.
+ First line must be feature keyword in the feature file
+Keywords:
+---------
+ Feature:Should be in higle level like title
+ Scenario: should be like description.
+ Given: its representing the pre-condition.
+ When:  its representing the action/intrection
+ Then: its representing assetions or validation.output
+ And: if you want to check multiple output then we can use And.
+
+All the 4 keyword are considered as steps in Stepdefinitions package file.
+
+if you want creat all the methods in step defintion file then simply run feature file then cucmber will give you skelitan in the console you can copy past in the step definition file
+
+to understand the feature from step definition you should have same steps which you have given in feature must be matched with @given/when/then("")
+
+BDD we dont use testng we use Junit.
+
+
+if you want to reports then we should use testrunner file.
+
+you should add the @RunWith(Cucmber.calss) annotation before the class name. and also @CucmberOptions(
+feature =' location',
+glue ="name of the package ",
+dryRun=true // it will check if all the steps in features file is having corsponding implementation methods  or not in step definition ,
+monochrome=true // it will remove uncessary characters from console.
+pligin={"pretty","html:test-output"}//it will create the html report in test-output folder automatically this is same like testng report.
+) annotation
+
+Folder strucuture
+-----------------
+
+Project name
+ Features[folder]
+ pageobjects(Package)
+ stepDedinitions(package)
+ Utilities(package)
+ Target(Reports)
+ pom.xml
+
+date driven approach in cucmber:
+------------------------------------
+
+ scenario outline: this keyword is used specifie we are using data driven approach 
+
+
+ Given open the borwser
+ when enter the username<email>
+ And enter the password <password>
+ Then Title page should "Home" in site.
+
+ Example:
+
+ email |password
+
+ surya|test
+ demo|test
+
+ //the above this example where i can give test data how much i want.
+ 
+Backgroud:
+is used to reusable scenarios in the features file.
+
+we can run the specific features like {"/features/login.features","/features/home.features"};
+
+Before Hook method
+we can use before method to run before the class runs and it cant be inheritead in from any other class.
+
+We can add tags to features files so we can run in specific scenario or group them using specific file.
+
+In cucmberoption and tag={"@sanity","@regression"}

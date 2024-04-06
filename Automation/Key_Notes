@@ -1,0 +1,640 @@
+Key_Notes
+Need to work on design pattern in test
+
+For chrome notification
+------------------------
+
+// INIT CHROME OPTIONS for locations
+    ChromeOptions options = new ChromeOptions();
+    Map<String, Object> prefs = new HashMap<String, Object>();
+    Map<String, Object> profile = new HashMap<String, Object>();
+    Map<String, Object> contentSettings = new HashMap<String, Object>();
+
+    // SET CHROME OPTIONS
+    // 0 - Default, 1 - Allow, 2 - Block
+    contentSettings.put("notifications", 1);
+    profile.put("managed_default_content_settings", contentSettings);
+    prefs.put("profile", profile);
+    options.setExperimentalOption("prefs", prefs);
+
+    // SET CAPABILITY
+    caps.setCapability(ChromeOptions.CAPABILITY, options);
+
+ //Configure ChromeOptions to pass fake media stream
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("use-fake-device-for-media-stream");//for camera 
+    options.addArguments("use-fake-ui-for-media-stream");//microphone
+
+window handles 
+--------------
+String ParentWindow= driver.getWindowHandle();
+  Set<String> childwindows= driver.getWindowHandles();
+//				  List<String > id = new ArrayList<String>(childwindows);
+//				  for( String wind:childwindows) {
+//					  System.out.println(wind);
+//				  }
+//				  Thread.sleep(5000);
+//					driver.switchTo().window(id.get(1));
+				  for( String wind:childwindows) {
+			
+				  if(!ParentWindow.equals(wind)){
+					  driver.switchTo().window(wind);
+					  
+				  }
+				  }
+ driver.switchTo().window(ParentWindow);
+
+
+Waits
+-----
+driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(1));
+
+ public void waitforAttribute(String locator,String Attr) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        //wait.until(ExpectedConditions.attributeToBe(locateElement(locator), Attr,val));
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(locateElement(locator), Attr));
+
+    }
+    public void waitForAJAXToLoad(int customTimeoutInSeconds) {
+        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(customTimeoutInSeconds));
+        customWait.until(ExpectedConditions.jsReturnsValue("return jQuery.active == 0"));
+
+
+    }
+
+     Wait<WebDriver> wt=new FluentWait<WebDriver>(driver)
+					  .withTimeout(Duration.ofSeconds(30))
+					  .pollingEvery(Duration.ofSeconds(5))
+					  .ignoring(NoSuchElementException.class);
+
+Action class
+----------------
+
+ WebElement src=driver.findElement(By.xpath("//label[normalize-space()='Full Name*']"));
+			 WebElement des=driver.findElement(By.xpath("//textarea[@class='form-control ng-pristine ng-untouched ng-valid']")); 
+			  Actions act =new Actions(driver);
+			  Thread.sleep(5000);
+
+			  //CTRL +A
+			  act.keyDown(src, Keys.CONTROL);
+		
+			  act.sendKeys(src, "a");
+			  act.keyUp(src, Keys.CONTROL);
+			  act.perform();
+			  //CTRL +C
+			  act.keyDown(src, Keys.CONTROL);
+			  act.sendKeys(src, "c");
+			  act.keyUp(src, Keys.CONTROL);
+			  act.perform();
+			  //CTRL +V
+			  act.keyDown(des, Keys.CONTROL);
+			  act.sendKeys(des, "v");
+			  act.keyUp(des, Keys.CONTROL);
+			  act.perform();
+			  
+		 WebElement Interact= driver.findElement(By.xpath("//a[normalize-space()='Interactions']"));
+			 WebElement Drag= driver.findElement(By.xpath("//a[normalize-space()='Drag and Drop']"));
+			 WebElement Testtatic = driver.findElement(By.xpath("//a[text()='Static ']"));
+			 act.moveToElement(Interact).perform();
+			  act.moveToElement(Testtatic).click().perform();
+			 act.clickAndHold(src).moveToElement(des).release(des).perform();
+            act.contextClick(elem).perform();
+            act.dragAndDrop(src, des).perform();
+
+TestNG
+------
+This line will be in xml file of testng xml file
+<listeners>
+<listener class-name="Selenium_Practice.Selenium_Practice.Listiners"></listener>
+</listeners>
+<parameter name="j" value="10"></parameter>
+<parameter name="k" value="50"></parameter>
+
+@Parameters({"j","k"}) //before the @test anotation.
+@Test(dataProvider ="login", dataProviderClass =Iframe.class) // we can use dataproviderClass if the dataProvider is not in the same class
+
+
+
+JS Scripts
+-----------
+Higlight the specific elements
+JavascriptExecutor js =((JavascriptExecutor)driver);
+js.executeScript("arguments[0].style.border='3px solid red'", elem);
+ Scroll 
+   js.executeScript("arguments[0].scrollIntoView(true)",Learnmore );
+   js.executeScript("document.scrollTo(0, document.body.ScrollHeight)");
+   js.executeScript("window.scrollBy(0,5000)");
+   js.executeScript("arguments[0].click();", elem);
+   js.executeScript("alert('Clicked on Book a free Demo');");
+  js.executeScript("document.frames.length;");
+  js.executeScript("history.go(0)");
+  String title =js.executeScript("return document.title;").toString();
+  System.out.println(title);
+
+
+
+To download the files to user specified location
+---------------------------------------------
+HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("download.default_directory",  System.getProperty("user.dir") + File.separator + "DownloadedFile");
+		WebDriverManager.chromedriver().setup();
+		  WebDriverManager.edgedriver().setup();
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", chromePrefs);
+
+IFrame
+------
+driver.switchTo().defaultContent();
+driver.switchTo().parentFrame();
+ WebElement element= driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']"));
+driver.switchTo().frame(element);
+
+Taking snapshot using Ashot
+
+----------------------------
+public static String takeSnap(WebDriver driver) {
+		String destination = null;
+		try {
+		String data = new SimpleDateFormat("yyyyMMddhhmm").format(new Date());
+		
+		Screenshot source = new AShot()
+                .shootingStrategy(ShootingStrategies.viewportPasting(100))
+                .takeScreenshot(driver);
+		// Save the screenshot to the specified file path
+        
+        destination = System.getProperty("user.dir")+ "/Screenshot/"+ data + ".png";
+		
+        //
+        ImageIO.write(source.getImage(), "PNG", new File(destination));
+      
+       
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		//return destination;
+
+      return destination;
+
+and to do image comparission of 2 given images
+ BufferedImage expectedImage = ImageIO.read(new File("reference.png"));
+BufferedImage actualImage = ImageIO.read(new File("actual.png"));
+
+// Perform image comparison here using a suitable library
+// For example, you can use imgscalr's ImageComparator to compare images
+ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage);
+assertFalse("Images are not the same", diff.hasDiff());
+
+
+Generic method To Check the downloaded file content
+---------------------------------------------------
+
+   public  void TXT_CSV(String ExpectedFile,String SourceFile) {
+		try {			
+			BufferedReader Sourcereader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/DownloadedFile/Destination/"+ExpectedFile));
+			String line;			
+			StringBuilder SourFileContent = new StringBuilder();
+			while ((line = Sourcereader.readLine()) != null) {
+				SourFileContent.append(line);			    
+			}
+			Sourcereader.close();						
+		    BufferedReader Desreader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/DownloadedFile/Source/"+SourceFile));
+		    String line1;				
+				StringBuilder DesfileContent = new StringBuilder();
+				while ((line1 = Desreader.readLine()) != null) {
+					DesfileContent.append(line1);				    
+				}
+				Desreader.close();									
+			if (SourFileContent.toString().contains(DesfileContent.toString())) {
+				try {
+					reportStep("The Source text: "+SourFileContent+"/n Destination text are same: "+DesfileContent, "pass",driver1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					reportStep("The Source text: "+SourFileContent+"/n Destination text are not same: "+SourFileContent, "fail",driver1);
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}
+			}
+			System.out.println("Content inside the file "+SourFileContent.toString());
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} 
+		}
+        
+	 public  void comparePDF(String sourceFileName, String destinationFileName) {
+	    try (PDDocument sourceDocument = PDDocument.load(new File(System.getProperty("user.dir") + "/DownloadedFile/Source/" + sourceFileName));
+	         PDDocument destinationDocument = PDDocument.load(new File(System.getProperty("user.dir") + "/DownloadedFile/Destination/" + destinationFileName))) {
+	        PDFTextStripper sourceTextStripper = new PDFTextStripper();
+	        PDFTextStripper destinationTextStripper = new PDFTextStripper();
+	        String sourceText = sourceTextStripper.getText(sourceDocument);
+	        String destinationText = destinationTextStripper.getText(destinationDocument);
+	        if (sourceText.equals(destinationText)) {
+	        	try {
+					reportStep("The Source text: "+sourceText+"/n Destination text are same: "+destinationText, "pass",driver1);
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+	        } else {
+	        	try {
+					reportStep("The Source text: "+sourceText+"/n Destination text are not same: "+destinationText, "fail",driver1);
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+	        }
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	 
+	 public  void compareDOCX(String sourceFileName, String destinationFileName) {
+		    try (XWPFDocument sourceDocument = new XWPFDocument(new FileInputStream(System.getProperty("user.dir") + "/DownloadedFile/Source/" + sourceFileName));
+		         XWPFDocument destinationDocument = new XWPFDocument(new FileInputStream(System.getProperty("user.dir") + "/DownloadedFile/Destination/" + destinationFileName))) {
+		        XWPFWordExtractor sourceExtractor = new XWPFWordExtractor(sourceDocument);
+		        XWPFWordExtractor destinationExtractor = new XWPFWordExtractor(destinationDocument);
+		        String sourceText = sourceExtractor.getText();
+		        String destinationText = destinationExtractor.getText();
+		        if (sourceText.equals(destinationText)) {
+		        	try {
+						reportStep("The Source text: "+sourceText+"/n Destination text are same: "+destinationText, "pass",driver1);
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+					}
+		        } else {
+		        	try {
+						reportStep("The Source text: "+sourceText+"/n Destination text are not same: "+destinationText, "fail",driver1);
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+					}
+		        }
+		        
+		        sourceExtractor.close();
+		        destinationExtractor.close();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
+	 
+	 
+	 
+	 public void compareExcel(String sourceFileName, String destinationFileName) throws Exception {
+		    try (Workbook sourceWorkbook = WorkbookFactory.create(new FileInputStream(System.getProperty("user.dir") + "/DownloadedFile/" + sourceFileName));
+		         Workbook destinationWorkbook = WorkbookFactory.create(new FileInputStream(System.getProperty("user.dir") + "/DownloadedFile/" + destinationFileName))) {        
+		        Sheet sourceSheet = sourceWorkbook.getSheetAt(0);
+		        Sheet destinationSheet = destinationWorkbook.getSheetAt(0);
+		        int sourceRowCount = sourceSheet.getPhysicalNumberOfRows();
+		        int destinationRowCount = destinationSheet.getPhysicalNumberOfRows();
+		        if (sourceRowCount != destinationRowCount) {
+		            System.out.println("Test Step fail");
+		            return;
+		        }
+		        for (int i = 0; i < sourceRowCount; i++) {
+		            Row sourceRow = sourceSheet.getRow(i);
+		            Row destinationRow = destinationSheet.getRow(i);
+		            int sourceCellCount = sourceRow.getPhysicalNumberOfCells();
+		            int destinationCellCount = destinationRow.getPhysicalNumberOfCells();
+		            if (sourceCellCount != destinationCellCount) {
+		            	reportStep("The Source text: "+sourceFileName+"/n Destination text are not same: "+destinationFileName, "fail",driver1);
+		                return;
+		            }
+		            for (int j = 0; j < sourceCellCount; j++) {
+		            	String sourceCell = sourceRow.getCell(j).toString();
+		                String destinationCell = destinationRow.getCell(j).toString();
+		                //String sourceValue = getCellValueAsString(sourceCell);
+		               // String destinationValue = getCellValueAsString(destinationCell);
+		                if (!sourceCell.equals(destinationCell)) {
+		                	reportStep("The Source text: "+sourceFileName+"/n Destination text are not same: "+destinationFileName, "fail",driver1);
+		                    return;
+		                }
+		            }
+		        }
+
+		        reportStep("The Source text: "+sourceFileName+"/n Destination text are same: "+destinationFileName, "pass",driver1);
+
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
+
+
+
+
+Generic method for automating file upload using AUTO IT
+---------------------------------------------
+
+	public void autoitfileupload(String documentname, String element) {
+	//Need to mention which file need to be uploaded in the documentname
+		String filepath = System.getProperty("user.dir") + "\\ToUpload\\" + documentname;
+	// need to write the AUTO IT code in the auto it console and make it is as executable file as exe file and upload in FRM and element need to keept empty for reusable
+//		String autoITpath = System.getProperty("user.dir") + "\\auto\\fileupload.exe";
+		String autoITpath = System.getProperty("user.dir") + "\\AutoIT\\cUpload.exe";
+		
+		System.out.println("AutoIT Location:" + autoITpath);
+		String location = filepath;
+		try {
+			if (isEnabled(element)) {
+				clickElement(element);
+				System.out.println("Upload button is clicked");
+//In process builder first parameters will be executed and second one will be the argument in process builder which is used to run the third party files in java.
+				ProcessBuilder pb = new ProcessBuilder(autoITpath, location);
+				pb.start();
+				System.out.println("File Uploaded FileName: " + documentname);
+			}
+		} catch (Exception e) {
+			System.out.println("failed to upload file" + documentname);
+			//writeToLogFile("ERROR", "failed to upload file" + documentname + ".ERROR: " + e.getMessage());
+		}
+	}
+
+Automating TFS bug loging
+----------------------------
+public class Createjson extends TFS {
+	public static String Filename ="TestScripts_Sprint1.xlsx";
+	public static String CreateJS() {
+	try {
+		
+		
+		TFS.readOnly(Filename);
+		String today = new SimpleDateFormat("dd-MM-YYYY").format(new Date());
+		String attachmentUrl= "http://192.168.4.222:8080/tfs/GibraltarRepos/_apis/wit/attachments/c0f523df-53c8-4158-9693-a368e2548201";
+		
+			for (Map<String, String> bugInfo : bugInfoList) {
+			    String reposteps = bugInfo.get("reposteps");
+			    String PP = bugInfo.get("priority");
+			    String Priority =priorityHandle(PP);
+			    String SS = bugInfo.get("severity");
+			    String Severity = SeverityHandle(SS);
+			    String title = bugInfo.get("Title");
+			    System.out.println(PAT);
+			    
+		StringWriter writer = new StringWriter();
+		JsonFactory jsonFactory = new JsonFactory();
+		JsonGenerator gen = jsonFactory.createGenerator(writer);
+
+		// Start writing JSON array
+		gen.writeStartArray();
+
+		//title
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/System.Title");
+		gen.writeStringField("value", title);
+		gen.writeEndObject();
+		//reposteps
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/Microsoft.VSTS.TCM.ReproSteps");
+		gen.writeStringField("value", title);
+		gen.writeEndObject();
+		//AssignTo
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/System.AssignedTo");
+		gen.writeStringField("value", title);
+		gen.writeEndObject();  
+		//priority
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/Microsoft.VSTS.Common.Priority");
+		gen.writeStringField("value", Priority);
+		gen.writeEndObject();
+		//Severity
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/Microsoft.VSTS.Common.Severity");
+		gen.writeStringField("value",Severity );
+		gen.writeEndObject();
+		//Tag
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/fields/System.Tags");
+		gen.writeStringField("value", today);
+		gen.writeEndObject();
+		//InsertImage
+		gen.writeStartObject();
+		gen.writeStringField("op", "add");
+		gen.writeStringField("path", "/relations/-");
+		gen.writeStringField("value", " {\r\n      \"rel\": \"AttachedFile\",\r\n      \"url\": \"http://192.168.4.222:8080/tfs/GibraltarRepos/_apis/wit/attachments/c0f523df-53c8-4158-9693-a368e2548201\" \r\n    }\r\n  \r\n");
+		gen.writeEndObject();		
+		// End the JSON array
+		gen.writeEndArray();
+
+		// Close the generator
+		gen.close();
+
+		// Get the generated JSON array as a string
+		String jsonArrayString = writer.toString();
+		
+		System.out.println(jsonArrayString);
+		return jsonArrayString;
+			}
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
+	
+	}
+	
+	private static String getNestedJsonObjectAsString() {
+        try {
+			StringWriter nestedWriter = new StringWriter();
+			JsonFactory nestedJsonFactory = new JsonFactory();
+			JsonGenerator nestedGen = nestedJsonFactory.createGenerator(nestedWriter);
+
+			// Start writing nested JSON object
+			nestedGen.writeStartObject();
+			nestedGen.writeStringField("rel", "Attached File");
+			nestedGen.writeStringField("url", "abddfghjkljytrtyuikjhbvcxcvbnmnbv");
+			nestedGen.writeEndObject();
+
+			// Close the nested generator
+			nestedGen.close();
+
+			// Return the nested JSON object as a string
+		return nestedWriter.toString();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
+
+
+
+To generic method creating new Log message without using log4j scennario
+
+
+ public  void startLogging() {
+	        originalSysOut = System.out;
+	        System.setOut(new DualPrintStream(originalSysOut, customSysOut));
+	    }
+
+	    public  void stopLogging() {
+	        System.setOut(originalSysOut);
+	        customSysOut.close();
+	        logMessages.clear();
+	    }
+
+	    public List<String> getLogMessages() {
+	        String[] lines = outputStream.toString().split(System.lineSeparator());
+	        for (String line : lines) {
+	            logMessages.add(line);
+	           // System.out.println(logMessages+"*******************");
+	        }
+	        return logMessages;
+	    }
+
+private static class DualPrintStream extends PrintStream {
+        private final PrintStream second;
+
+        public DualPrintStream(PrintStream first, PrintStream second) {
+            super(first);
+            this.second = second;
+        }
+
+        @Override
+        public void write(byte[] buf, int off, int len) {
+            super.write(buf, off, len);
+            second.write(buf, off, len);
+        }
+
+        @Override
+        public void flush() {
+            super.flush();
+            second.flush();
+        }
+
+        @Override
+        public void close() {
+            super.close();
+            second.close();
+        }
+    }
+
+
+ConsoleLog and networklog and BIDI
+-----------------------------------
+
+public void Chrome(String ChoseLocation) {
+		
+		if("Remote".equalsIgnoreCase(ChoseLocation))
+		{
+		try {
+			
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("download.default_directory", System.getProperty("user.dir") + File.separator + "DownloadedFile/Destination/");
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", chromePrefs);
+			//options.addArguments("--remote-allow-origins=*");
+			
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("chrome");
+			//capabilities.setCapability("platform", "WINDOWS");
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			
+			// Set the URL of your Selenium Grid Hub
+			String gridUrl = "http://localhost:4444/wd/hub"; 
+			driver1 = new RemoteWebDriver(new URL(gridUrl), capabilities);
+//		    driver.manage().window().maximize();
+			
+			//WebDriverManager.chromedriver().setup();
+			
+
+			//driver = new ChromeDriver(options);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}else if("Local".equalsIgnoreCase(ChoseLocation)) {
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("download.default_directory", System.getProperty("user.dir") + File.separator + "DownloadedFile");
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", chromePrefs);
+			options.addArguments("--remote-allow-origins=*");
+//			String cpath =SeleniumManager.getInstance().getDriverPath(options)
+//			System.out.println(cpath);
+          //WebDriverManager.chromedriver().driverVersion("111.0.5563.64 ").setup();
+          WebDriverManager.chromedriver().setup();
+
+			driver = new ChromeDriver();
+//			driver.manage().window().maximize();
+			DevTools tools= ((ChromeDriver) driver).getDevTools() ;
+			tools.createSession();
+//			tools.getDomains().javascript().pin("notifications","""
+//			      function highlight(element){
+//			            let defaultBG = element.style.backgroundColor;
+//			            let defaultOutline = element.style.outline;
+//			            element.style.backgroundColor = '#FDFF47';
+//			            element.style.outline = '#f00 solid 2px';
+//			        
+//			            setTimeout(function()
+//			            {
+//			                element.style.backgroundColor = defaultBG;
+//			                element.style.outline = defaultOutline;
+//			            }, 1000);
+//			        }
+//			        """);
+			
+		        mutationsList = Collections.synchronizedList(new ArrayList<>());
+		        ((HasLogEvents)driver).onLogEvent(domMutation(mutation -> {
+		            mutationsList.add(mutation);
+		        }));
+
+		        // configure JS exceptions logging
+		        jsExceptionsList = Collections.synchronizedList(new ArrayList<>());
+		        Consumer<JavascriptException> addEntry = jsExceptionsList::add;
+		        tools.getDomains().events().addJavascriptExceptionListener(addEntry);
+
+		        // configure console messages logging
+		        consoleMessages = Collections.synchronizedList(new ArrayList<>());
+		        tools.send(Log.enable());
+		        tools.addListener(Log.entryAdded(),
+		                logEntry -> {
+		                    consoleMessages.add("log: " + logEntry.getText() + " level: " + logEntry.getLevel());
+		                });
+			
+			var listener = new WebDriverListener() {
+			@Override
+			public void afterAnyWebElementCall(WebElement element, Method method, Object[] args, Object result) {
+				try {
+					for (var mutation:mutationsList) {
+			            var attributeName = Optional.ofNullable(mutation.getAttributeName()).orElse("");            
+			            var oldValue = Optional.ofNullable(mutation.getOldValue()).orElse("");
+			            var currentValue = Optional.ofNullable(mutation.getCurrentValue()).orElse("");
+			            var elementLocation = Optional.ofNullable(mutation.getElement().toString()).orElse("");
+			            System.out.println(String.format(" attr name: %s\n old value = %s\n new value = %s\n element = %s\n\n", attributeName, oldValue, currentValue, elementLocation));
+			        }
+
+			        System.out.println("###########################");
+			        System.out.println();
+
+					highlighElement(element);
+					//System.out.println(String.format("%s called for element %s", method.getName(), element.getTagName()));
+					//growlMessage(String.format("%s called for element %s", method.getName(), element.getTagName()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			};
+			//driver = new EventFiringDecorator(listener).decorate(driver);	
+		driver1 = new EventFiringDecorator<WebDriver>(listener).decorate(driver);
+		
+	    webDriverWait = new WebDriverWait(driver1, Duration.ofSeconds(WAIT_FOR_ELEMENT_TIMEOUT));
+	    actions = new Actions(driver1);
+	    
+		}
+	}
+
+
+
+
+
+	

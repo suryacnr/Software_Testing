@@ -1,0 +1,194 @@
+Marketing campaign is should be closed within 3 weeks of time at 4th-week final email should be sent
+Email can be sent based on 4 categories 1. Working,2.technoligy,3.support,4.Marketing content,5.Culture
+In that particular category following detils will be displayed
+Eg: Couching material
+    Learn about us(using journey builder user can track what they have looked in the website)
+   Video 
+   Booking link
+??
+
+For the particular lead if the manager is todd then from email address should be Todd's address
+
+What about google analytiyz integrating with salesforce
+
+Scoring will be given by watch vedio, clicking links and email forerding so on 
+In what bases scoring will be given?
+Based on the scoring and intraction only we can find what will be the next content for the email
+
+Collebration
+if the Agent and another third party as worked together to close the oportunity email will be sent third party with vedio of the agnet speaking if the agent vedio is not there then we have 
+to send the CEO email. 
+1.Where does this email come from ? gary or gibraltor
+2.how do we no that we both work together
+
+User must able to select the calendar from the bookings link
+Thum nail for the vedio must be spearate
+Using the playable we can tell how time he have watched with the help of that we will be having a score
+All the stage or particular stage lead records will be sent to the marketing cloud
+
+Refer the screenshot for the flow 
+Task creation based on scoring?
+for the declined stage lead the mail will be sent after 45 days
+
+For each agent person there will be different flows that needs to know? the loop will not end it he becomes an agent or he becomes DO not recruit
+We have to start the flow with strugle sam with couching content
+Then growth glenda
+
+
+By manager can able to sent the email to individual leads by sent email button in leads object
+
+Reponing mails will not be tracked
+
+
+An email template for co - op leads
+technology email templates for newbie and stable sara
+video thumbnail
+all the links for the email template
+booking email task?
+400 scor task?
+Decline Class
+Sent email button needs to confirm
+Decline lead flow needs to be confirmed
+Extra DD must be added in the Excel file
+
+
+
+Generics In Java
+--------------------------
+
+
+1.Introduction
+To resolve Type safety and type casting problems we use Generics
+
+Case:1 type safety:
+what is type safety
+Arrays are type safty we can give the gaenty for the type of elements present inside array for eg: if program requirement is to hold only string type we can chose string array if we try to add anyother objects we will get complie time error and Arraylist is not type safety
+String[] s = new String[1000];
+s[0]="durga';
+s[1]="ravi"'
+s[2]= new Integer(10); == Incompertable type found int required string
+
+Hence string array can contains only string type of objects due to this we can give the garenty paresent inside array hence array are safe to use with respective to type that is array are type safe
+
+
+Arraylist l=new Arraylist();
+l.add("durga");
+l.add(new Integer(10));
+
+
+
+
+But collection are not type safe that is we cant give the garanty for the type of eleemnt present inside collection if your programming reuirement is to hold only string type of objects and if we chose array list, by mistake trying to add any other type of object we would get any complie time error but program may fail at run time
+
+String name = (String) l.get(0);
+String name1 = (String) l.get(1); // will get class cast exeception at runtime
+
+
+collections are not type safe
+
+if you want to type safty go with array then why this new concept caome called generics ?
+
+There is big probem array is fixed in size if you now the size we can use array but if you dont know the size then we should go collection with generics concepts
+
+Case2 :
+Type casting
+
+String [] sl = new String[1000];
+s[0]="durga";
+
+In the case of arrays at the time of retrival type casting is not required.coz there is generanty for the element present inside the array
+String name = s[0];
+string name1= s[1];
+
+
+In the case of array list
+
+Arraylsit l= new Arraylist();
+l.add("add");
+string name1 = l.get(0);
+ERROR: found object and required string
+String name1=(string) l.get(0);
+type casting is mandatory for collection hence type casting is big headcake 
+ to over come the the above the problems sun people intraduced the generics in 1.5 version  hence the main object of genreics are 
+1.to provide type safety 
+2.To resolve type casting
+
+
+Sesion 2
+-----------------------
+For ex to hold only string type of object we can create genric version of array list as follow
+ArrayList<String> l= new AL<String>;
+
+For this array list we can add only string objects if we try to add any other object we will get compile time errror
+
+l.add("Durga");
+l.add("Ravi");
+l.add(new Integer(10)); ==>Compile time error
+Through genreic we are getting type safety
+
+
+String name1 =l.get(0);
+at the time of retrival we dont need to provide type casting, Hence we can solve type casting problem through generics
+
+Polymor
+usage of parent reference to hold child object one refernce to  hold mutiple runtime object is called polymorphisam
+
+In collection we have Collection(I)=====>List(I)
+List(i)
+
+Arraylist LinkedList   Veter   Stack
+
+List l = new AL();
+         new LL();
+         new Vector();
+         new Stack();
+
+Defenition of AL<String> L= neew AL<String>(); ?
+
+AL ==> BaseType
+<String>===>Parameter type
+
+List<String> L= neew AL<String>();
+Collection<String> L= neew AL<String>();
+AL<Object> L= neew AL<String>(); ==>Comple time error Icmopatible types
+Conclution 1
+-----------
+We can able to apply only poly cocnept in base type not in Parameter type
+
+
+Conclution 2
+-------------
+
+Collection cant hold premetive type 
+AL<int> x=new AL<int>();
+CE:unexpected type found int requirend refernce(Object)
+
+For type parameters We can take any class or interface but cant add premetivs
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
