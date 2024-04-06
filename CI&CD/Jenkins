@@ -1,0 +1,40 @@
+Jenkins is an open source automation server
+used to autmate parsts of the sofware developmen process
+ it helps software teams facilitate continuous integration and continous deployment/ delivery 
+
+ jenkins is highly extensible 
+
+ why do we need jenkins?
+ developers making conde changes in parallel want to make sure that their changes integrate without errors
+ without jenkins, manual integration testing happens infrequently and is time consuming
+ developers also want their changes built and tested in a standardized enviroment.
+
+ Installation methods
+ run from a war( web application resource) file
+ run as a docker container
+ install on macos
+ install on linux
+
+ Run using war file 
+ coz its platform and os independent
+ java 8 or 11 must be installed in windows
+ download from google by typing jenkins war file 
+
+ to start jenfins go to cmd and type java -jar jenkins.war
+
+ the password will be displayed in cmd and copy the password open the localhost:8080 and past th password in admin pass field.
+
+ then click install suggested plugin
+
+create first admin user
+by entering username and password and email
+then you can change the localhost port or leave as it is by defualt
+then click start using jenkins
+
+we can create new job in new job folder
+
+freestyle: project is basic projects mostly it is not recomanded for more complaice project
+
+pipline: project is used for more complaze projects. we can store all code and write in jenkinsfile
+
+multi-configuration project is used for example if we develope app which is used for android and ios. to configure 
