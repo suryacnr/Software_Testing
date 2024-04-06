@@ -1,0 +1,367 @@
+API Intranduction:
+--------------------
+
+api testing is also called as service testing
+
+a clientz&server?
+server contains a actual application. client is were we can able to access is called client
+Through internal we can connect this two by network
+
+client/Server architecture
+
+1.tire architecture
+to save the file in local we dont need to network or server Eg: if we have client and server run in same mechine it is called 1 tire arch
+
+2.tire architecture
+
+different clients can access the databese or website form single server(different computer) which is hosted in thier orgnaization locally it is called two tire architecture
+
+3.tire architecture
+client tier(presentation layer)(HTML ,CSS,JS)
+business logic(Webserverlayer or application layer)(Java,.Net,Python)
+database tier(Data layer)(MYSL,orocal)
+
+As client we sent the request to server but it actual go the business logic layer and from there it goes to database layer(server).after hitting from server it comes back to business logic and from busines logic it goes to client it gets the responce.
+
+what is API(application program interface)
+
+if we have two application to comunicate with the help of api. the two application may be differ in their platforms or in items of techology.
+
+Eg: from salesforce to box application we need to api or if we want to access from front end and backend then we need api
+
+what is advantage of testing api?
+
+initailay database will be developed then api will be developed by developer then only they develop for front end
+
+i can do testing on api before front end development we can reduce the testing in UI(web) coz of doing all the functionalay check in api testing. we need to focus only 20% on UI(web testing).
+this is reduce the lot of time and effort.
+
+
+types of api 
+simple objec access protocal(SOAP)
+REST( respresntational state transfer)
+
+api vs webservice
+If the api is on internal then it is called websrvice .web services ia an api wrapped in HTTP
+all we services are api but all the apis are not web service
+A websrvice needs a network while an api doesnt need a dnetwork for this(coz once the api is moved to prodcution then we calle it as webservices)
+
+Rest api methods
+get post put delete
+
+get request we get(reseve informations) the responce from the server.
+post request we dont get any responce from the server  we used to sent only to store the data in database.
+put  we can update( the data sent on put request)the request from the server
+
+delete the  data from the server.
+
+before testing the api we need to no  the api functionaly what is the purpose of api
+
+
+terminologies
+
+URI- uniform resource idetifier
+URL- uniform resource locator
+URN- unfiorm resource name
+
+path is called URN and it is also called as endpoint
+host and path is called URI
+scheme,host and path is called URL
+
+Features& resouce
+fetaures is a term used in manual testing to test some functionality and similarly resource is the term used in api automation testing refering some fucntionality.
+
+payload
+payload meand body in the http request and responce message.
+Request payload
+response payload
+
+How to create the own api
+--------------------------
+
+to create the own api we need nodejs to download in that we getnpm and we need to install json-server from npm.
+
+
+
+
+after installing json-server by npm we can run the comment by json-server file.json 
+then you will get the end point.
+
+User should have the manual document to perform the api testing
+ID, title/Description, URI, HTTP request, authentication, request payload, response payload, status code, validations
+
+
+In patch we update only single record and in put we update multiple records
+
+to access get request we dont need to provide any thing expect the URL(end point)
+
+to access post request we need to provide the boady and select it as raw type and the slect json instead of txt
+
+to access put request we need to provide the existing ending point created and in the boady need to mention all the boady which we gave in the request boady of post that we used to create before. and select it as raw type and json from dropdown.
+
+to access patch request we need to provide the existing ending point created and in the boady need to mention only what needs to change(that is fine) and select it as raw type and json from dropdown.
+
+to acess delete request we dont need to sent any responce body instead we need to mention the user or form which already exist.if you are viewing the deleted content you will get 204 status code
+
+
+Test/Validation
+What all the things we need to check body,cookies,header,responce time and etc.
+
+Json Javascript object notation
+when ever communicating with client and server we can use json(when ever we are senting form or any data from txt file in back end they convert it to json why they are using json/XML coz it low weighted file when come to txt,hex,pdf etc)
+
+JSON data type 
+in json we need to represent key and value pair.
+Key is always included in double qutation
+string 
+
+{"name":"Jhone","name1":"surya"}
+Number
+{"age":12,"age":23}
+boolen
+{"status":true}
+
+Array
+if we have multe set of data for one variable we can use [] which is called as arry
+{
+	"phone":[123456,09877656]
+}
+
+object
+to store student data
+
+{
+"Students":[
+{
+	"Sid":10,"sname":"surya"
+},
+{
+	"Sid":1,"sname":"sur"
+}
+
+]
+	
+}
+
+Json path
+Student[0].sid== in which order it is present then same order we have to specifie the order
+
+Instead of writing jsonpath manually we can use jsonpathfinder.com and jsonpath.com
+
+
+
+Responce validation
+---------------------
+Status code
+Headers
+Cookies
+Response time
+response body
+
+Assertion-
+
+PM-library
+it provide some functions using javascript
+
+javasscript function there is chai assertion library
+
+Normal function
+pm.test("ANY test name",function (){
+	//assertion;
+});
+
+Arrow function
+pm.test("ANY test name", ()=>{
+	//assertion;
+});
+
+Testing status code inside test tab
+pm.test("Status code is equals 200", ()=>{
+	pm.response.to.have.status(200);
+});
+
+
+if you want to testt for the status code being one of a set,include them all in an array
+pm.test("Status code is equals 200", ()=>{
+	pm.expect(pm.response.code).to.be.oneof([200,2001]);
+});
+
+check the status code text like created or OK:
+pm.test("Status code is equals 200", ()=>{
+	pm.response.to.have.status("Created");
+});
+
+Testing headers
+
+in header there are many header we mainly focus on Content type and content length but length may change freqiently.We can validate all the headers based on the requirement.
+//this will show the content type is present or not
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+//test for a response header having a particular value:
+
+pm.test("Content-Type is present", function () {
+   pm.expect(pm.response.headers.get('Content-type')).to.eql('application/json');
+});
+
+Testing cookies
+//this will show the cookie is present or not
+pm.test("Content-Type is present", function () {
+     pm.expect(pm.cookies.get('language')).to.be.true;
+     });
+
+ //this represents particular cookie value is present or not
+ pm.test("Content-Type is present", function () {
+     pm.expect(pm.cookies.get('language')).to.eql('en-gb');
+     });
+
+ Testing response times
+
+ Test for the response time to be within a spedified range
+//200 is mili secound and you can use below are above
+
+ pm.test("Response time is less then 50 ms", function () {
+     pm.expect(pm.respose.responsetime).to.be.below(200);
+     });
+
+
+Testing response boady
+
+response boady will be different from one body to another rest of the above will be almost same.
+
+Asserting a value type(Data type in java script)
+
+test the type of any part of the response:
+eg : string or int or array or boolen or not
+
+
+{ "id":10,
+"name":"surya",
+"location: "India", 
+"phone": "1234567890" ,
+"courses :[" Java ","Selenium"]
+
+}
+//declared the jsondata outside of the function coz it is used in many function thats why we declared as global function
+const jsonData = pm.response.json() ;
+pm.test ( "Test data type Of the response", ( )={
+pm.expect (jsonData).to.be.an ("object") ;
+pm.expect (jsonData.name).to.be.a ( string") ;
+pm.expect (jsonData.ld).to.be.a("number" ) ;
+pm.expect (jsonData.courses).to.be.an ( " array") ;
+}
+
+Asserting array properties 
+
+check if an array is empty or if it contains particular items:
+
+we can check the particular value given is same as value got the frome the response boady
+
+{ "id":10,
+"name":"surya",
+"location: "India", 
+"phone": "1234567890" ,
+"courses :[" Java ","Selenium"]
+
+});
+//it work only for array value in  the jsonbody
+pm.test ( "Test array properites/value", ( )={
+//include is used to find only one value in response body of array
+pm.expect (jsonData.courses).to.be.included("Java") ;
+//memebers method is used find all the value in the response body of array the vale dont need to be in order
+pm.expect(jsonData.courses).to.have.menebers(["java","selenium"])
+
+
+Asserting the json fields in response
+
+we can valid the field values in the response
+
+{ "id":10,
+"name":"surya",
+"location: "India", 
+"phone": "1234567890" ,
+"courses :[" Java ","Selenium"]
+
+});
+
+//jsondata.id is called as path over here we have only one id so we are direclty writing as jsondata.id but if we have multiple id we have go for jsonpath if jsonpath is not proper it may give you some problem.
+pm. test ( "value Of location field is India" , ( ) {
+var jsonData = pm.response.json() ;
+pm.expect(jsonData.id).to.eql(1) ;
+pm.expect(jsonData.name).to.eql( " John") ;
+pm.expect(jsonData.location).to.eql( " India" ) ;
+pm.expect(jsonData.phone).to.eql( "1234567890") ;
+pm.expect(jsonData.courses[0]).to.eq1( "Java" ) ;
+pm.expect(jsonDatacourses[1]).to.eq1( Selenium") ;
+});
+
+
+
+Json schema validation:
+
+schema meand what kind data we are  storing in the table(meta data).what kind of data we specified in the schema same data should be specified in the table.
+
+Json schema
+
+below are the example of schema if you any doubts you can refer the url given.you can also genrate json schema from google if you past your json in the website it will give you the json schema.
+
+var schema ={
+	"$schema":"http://json-schema.org/draft-04/schema#"
+	 "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "$schema": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "default": {},
+        "multipleOf": {
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        },
+        "maximum": {
+            "type": "number"
+        },
+        "exclusiveMaximum": {
+            "type": "boolean",
+            "default": false
+        },
+        "minimum": {
+            "type": "number"
+        },
+        "exclusiveMinimum": {
+            "type": "boolean",
+            "default": false
+        },
+        "maxLength": { "$ref": "#/definitions/positiveInteger" },
+        "minLength": { "$ref": "#/definitions/positiveIntegerDefault0" },
+        "pattern": {
+            "type": "string",
+            "format": "regex"
+        },
+        "additionalItems": {
+            "anyOf": [
+                { "type": "boolean" },
+                { "$ref": "#" }
+            ],
+            "default": {}
+        },
+}
+timy validatator in postman
+
+pm.test("To validate json is working as per schema or not" , ( ) {
+var jsonData = pm.response.json() ;
+pm.expect(tv4.validate(jsonData,schema)).to.be.true ;
+});
+
+jsondata actaul data from resoponse and schema is the data where we converted the json to jsonschema and stored it var schema variable.
+
