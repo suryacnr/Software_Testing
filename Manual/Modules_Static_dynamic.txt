@@ -1,0 +1,106 @@
+1. what is severity and priority for example?
+
+severity is the impact of the business where the priority is important assigned to the item 
+
+2.what is key difference when testing standalone application and customer facing application
+ desktop have single tire architecture
+
+3. process module- we use the waterfall model or linear model this a traditional model?
+
+  In waterfall model documentation plays a very important role everything will be documented
+  we talk with the client and gether the requirements and prepare the FRD Document then we will have a system design phase based on the FRD
+  we are creating the design and based on the design, developers will start developing the software and then we will be testing and deployment
+  and maintenance 
+  
+Advantages of waterfall model
+1. quality of the product will be good==waterfall will be used for the long team of the project every phase we have detailed documentation 
+2. since requirement changes are not allowed, the chances of finding the bugs are very less ==frequantly changing the requirement is not possible in waterfall method
+ we need to for change request(CR) if we keep on changing the requirement chance of finding the bugs will be high
+3. initial investment is less since the tester are hired at the later stage
+4.
+Disadvantages of waterfall model(because of the disadvantages of the waterfall we moved into some other model)
+ 1.if we want to add requirements we need to start from the first so requirements changes are not allowed
+ 2. if ther is defect in requirement it will continued till the end ==if the requirement is wrond design will be wrong if design is
+ wrong dev will be wrong and we cant find the defect (if there is a default in 1 phase it will be there in phase 2)
+3. total investment is more because if we find the defect in testing we need to go back to the previous phase and do rework it will cost more
+4.testing will start only after coding  
+over here every phase depends on the previous phase of the model until of completing the first phase we can't move for the second phase
+
+
+4.Spiral model - to overcome the disadvantage of the waterfall model we came across the spiral model
+
+1. planing == requirement analyzation
+2. Risk Analyzation == like how much dev, how must tester we need this all comes under requirement analyzation
+3. Engerniring &Execution ==Design and development
+4. Evaluation ==Testing
+
+1.Spiral model is iterative model and it also called as version control model -if one cycle is finished we will deliver one V1 to the customer (this prepared for product based)
+2. spiral model overcomes the waterfall model - requirement change is posable 
+3. In every cycle new software will be released
+4.we follow spiral model when ever there is dependency on the model -eg gmail in phase 1 we compose mail in phase 2 send box email
+
+Advantages of spiral model
+1.testing is done on every cycle, before going into next cycle
+2. Customers will get to use the software of every module. -customer dont need to wait until we finish the developing.
+3.requirement change is allowed after completing the cycle before going to the next cycle
+
+Disadvantages of spiral model
+Requirement changes is not allowed in between of cycle
+Every cycle of spiral model looks like waterfall model
+no testing in requirement on development phase
+
+5. V model or VV model verification and validation model
+
+In every phase, we do testing thats speciality of V model like in requirement phase, design phase, development, testing
+
+1.V Top to bottom
+1. BRS/CRS/URS(this document can be understandable to by business people not by tec pep) == Business requirement 
+ specification/ Customer req spec/User req spec Based  on this we do USER acceptance testing(BU team members will do review thats king of testing) 
+2.SRS == Software requirement specification document based on this BRS the SRS document will be prepared for tec and testing people.
+ In SRS system testing will be done(project manager will do review that is kind of testing)
+3. HLD and LLD == High-level design and low-level design document In HLD we will have main modules and LLD we will have submodules.
+In HLD Integration testing will be done
+4. Coding based on HLD and LLD coding will start. Unit testing will be done
+all the four comes under verification 1. Business Unit 2. project manager 3. design 4. developers 
+
+2.V Bottom to Top
+1. Unit testing, testing the single module is called unit testing
+2. Integration testing, testing multiple module by the dev is called integration testing
+3. system testting, after condacting the unit and integration testing application will be given to testing for system testing
+4.UAT testing will be done by client side
+
+
+6.Static testing 
+testing the project-related document is called as static testing
+in the form of: 
+Review
+walkthrough
+inspection
+
+Dynamic testing
+ testing the actual software.
+ in the form of 
+unit 
+integration testing
+UAT testing
+System testing
+
+7. Verification and validation
+verification check whether we are building the right product==in every phase we are implementing correctly or not
+focus on documentation
+verification typically involves 
+review 
+walkthrough
+inspection
+
+before software we do verification after software we do validation
+
+Validation 
+validation check whether we are building the product righ ==
+focus on software
+validation typically involves 
+unit testing, integration testing,system testing and UAT
+
+
+
+

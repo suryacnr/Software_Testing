@@ -1,0 +1,138 @@
+Selenium Notes
+In responce testing using selenium we can find pixel hight, wheight, pixel ratio, device matrics,useragent and in this tesitng
+
+Due to pending client work items for Realtor 360 and LHL, I was unable to commence the framework updates. However, I have now finished analyzing the current code and will begin the framework updates next week. Furthermore, I have included the start and end dates as well.
+
+
+	public String testdataloadArray(String sheetName,String testscriptID, String testdataname)  {
+		
+		String expected_value;
+		String value = null;
+		try {
+			
+			String key;
+			
+			XSSFWorkbook workbook = new XSSFWorkbook(getConfigurations("testdatapath"));
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+			int lastCellNum = sheet.getLastRowNum();
+			for (int i = 1; i <= lastCellNum; i++) {
+				 key = sheet.getRow(i).getCell(0).toString();
+				 System.out.println(key);
+				 if(key.equals(testscriptID)) {
+					 int lastcellvalue=sheet.getRow(0).getLastCellNum();
+					 for(int j=1;j<lastcellvalue;j++) {
+						  String  testname =sheet.getRow(0).getCell(j).toString();
+						  System.out.println(testname);
+						  if(testname.equals(testdataname)) {
+							   expected_value =sheet.getRow(i).getCell(j).toString();
+							  System.out.println(expected_value);
+							 return expected_value;
+							  
+						  }
+						
+							
+						}
+					 
+				 }
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+	//	@Override
+//	public String testdataload(String sheetName,String testscriptID, String testdataname)  {
+//	
+//			String expected_value;
+//			try {
+//				HashMap<String, Integer> testdataID = new HashMap<String, Integer>();
+//				String key;
+//				int value;
+//				XSSFWorkbook workbook = new XSSFWorkbook(getConfigurations("testdatapath"));
+//				XSSFSheet sheet = workbook.getSheet(sheetName);
+//				int lastCellNum = sheet.getLastRowNum();
+//				for (int i = 1; i <= lastCellNum; i++) {
+//					XSSFCell cell = sheet.getRow(i).getCell(0).toString();
+//					try {
+//						switch (cell.getCellType()) {
+//						case NUMERIC:
+//							double temp = cell.getNumericCellValue();
+//							long val = (long) temp;
+//							key = String.valueOf(val);
+//							if (DateUtil.isCellDateFormatted(cell)) {
+//								DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+//								Date date = cell.getDateCellValue();
+//								key = df.format(date);
+//							}
+//							break;
+//						case STRING:
+//							key = cell.getStringCellValue();
+//							break;
+//						case BOOLEAN:
+//							key = String.valueOf(cell.getBooleanCellValue());
+//							break;
+//						case FORMULA:
+//							key = cell.getCellFormula();
+//						default:
+//							key = "DEFAULT";
+//						}
+//					} catch (NullPointerException npe) {
+//						key = " ";
+//
+//					}
+//
+//					value = i;
+//					testdataID.put(key, value);
+//
+//				}
+//
+//				HashMap<String, Integer> testdatatitle = new HashMap<String, Integer>();
+//				int column = sheet.getRow(0).getLastCellNum();
+//				for (int i = 1; i < column; i++) {
+//					XSSFCell cell = sheet.getRow(0).getCell(i);
+//					try {
+//						switch (cell.getCellType()) {
+//						case NUMERIC:
+//							double temp = cell.getNumericCellValue();
+//							long val = (long) temp;
+//							key = String.valueOf(val);
+//							if (DateUtil.isCellDateFormatted(cell)) {
+//								DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+//								Date date = cell.getDateCellValue();
+//								key = df.format(date);
+//							}
+//							break;
+//						case STRING:
+//							key = cell.getStringCellValue();
+//							break;
+//						case BOOLEAN:
+//							key = String.valueOf(cell.getBooleanCellValue());
+//							break;
+//						case FORMULA:
+//							key = cell.getCellFormula();
+//						default:
+//							key = "DEFAULT";
+//						}
+//					} catch (NullPointerException npe) {
+//						key = " ";
+//
+//					}
+//					value = i;
+//					testdatatitle.put(key, value);
+//
+//				}
+//
+//				expected_value = sheet.getRow(testdataID.get(testscriptID)).getCell(testdatatitle.get(testdataname))
+//						.getStringCellValue();
+//				return expected_value;
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return null;
+//		}

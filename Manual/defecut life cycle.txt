@@ -1,0 +1,87 @@
+defecut life cycle
+
+why developer will reject the bug 
+enachment
+not reproducable
+Need more information
+As designed
+
+
+STLC Process
+Understanding the requirment
+Test design
+Test environment and execution
+Bug reporting and tracking
+Test cycle closuers
+
+when we have to stop testing
+
+critiria 1 when we have 100 test cases and executed all and closed all the bugs than we will stop the testing
+
+test metrics
+when ever we are doing some task we have to messure the task so we have to messure because we have to know how much we are in progress
+which will help the management team how much work is done what is inprogress and everthing
+
+Requirment data for test metrics
+1.No of requirment
+2.Avg no of test cases written per requirment
+3.Total no of test cases written fo all requirment
+4.Total no test cases executed/Total no test cases written)*100
+5.No of test cases pass/Total no test cases written)*100
+6.No of test cases fail/Total no test cases written)*100
+7.No of test cases blocked/Total no test cases written)*100
+8.No of test cases un expected/Total no test cases written)*100
+9.total no of defects identified
+10.critical defecut
+11.Higer defecut
+12.medium defect
+13.low defecut
+14.customer defecut
+15.No of defecut found in UAT
+
+
+
+Defecut metrics
+
+defecut density means no of defecuts identified per requirement
+No of defecuts found /Size no requirment
+
+Defecut removal Effciency(DRE)
+
+(A/A+B)*100
+(Fixed Defecuts /(Fixed Defecuts+Missed Defecuts))*100
+
+A-Defecuts identified during testing/Fixed Defecuts
+B-Defecuts identified by the customer/Missed Defecuts
+
+Defecut lekage
+No of Defecuts found in UAT/No of defcuts found in testing)*100
+
+Defecut rejection ration
+
+No of defecuts rejected/Total no of defecuts raised)*100
+
+Defecut age fixed date-Reort date
+
+customer satisfaction =no of complains per period of time
+
+
+what is 7 principles of software testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

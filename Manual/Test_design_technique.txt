@@ -1,0 +1,56 @@
+Test design Techniques/ Test data design techniques/ Test case design 
+
+The test design technique will reduce the data at the same time we should make sure everything is covered with minimal data
+test design will reduce the data and it increase the coverage
+Reduce the number test cases to be executed
+
+type of test design
+1.Equivalence class partition
+2. Bountry value analyzation
+3. Decision table
+4. state transition
+5. error guessing
+
+what equivalence class partition?
+
+equivalence class partition is a test design technique 
+it divides the data into various class and we can select that data according to that class and test, 
+that will reduce the number of test cases to be executed and save time for testing
+
+what is boundary value analysis?
+
+is a test design technique it manly focus on the boundary of the value eg if we have 18 is minium and 35 is maximum we will check with 
+- and + numbers it will reduce the number of test cases to be executed and save the time 
+
+Input domain testing 
+the values will be verified in the text box/input field
+here ECP & BVA  techiques
+
+what decision table?
+decision table is also called as a cause-effect table
+this technique will be used if we have more "conditions" and corresponding "action"
+we deal with combination of input
+
+
+Based on the condition action will be performed 
+
+what is a state transition? 
+changing the state from one condition to another
+
+it allows the tester to test the behavior of an AUT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

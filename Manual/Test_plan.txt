@@ -1,0 +1,100 @@
+1.what is the test plan?
+the test plan is a document that describes the test scope, test strategies objective, schedule, deliverables and resources required to perform
+testing for software product
+
+test scope means what to test and what not to test
+
+test strategies what kind of testing first smoke testing, sanity testing, regression testing, and functional testing
+
+Roles and responsibility  will be clearly defined test engineer, test lead and project managers who is the author of document and who will 
+review it
+
+test schedules mean when we have to contact what kind of testing clearly we have to mention what kind of testing and the date
+
+test deliverables each and every phase of testing we are going to deliver some document like test plan, test case, defect report, test 
+execution report is one deliverable
+
+pricing document will be done by the management
+
+entry and exit criteria when we have to start the testing and when we have to exit the testing that should be clearly mentioned
+
+suspension and resumption criteria we have to mention we have stopped the testing and when we have to resume the testing
+
+what kind of tool we have to mention them
+risk and mitigation
+approval who is going to approve the document
+
+
+2. what is the use case test scenario and test case
+Use case
+the use case has described the requirements in more diagrammatical representation
+
+use case contains three items (this will not be done by tester this will be done by a Business analyst)
+Actor== is a user
+action== he will perform the action
+Goal/outcome== he will get the outcome
+
+test scenario
+A possible area to be tested (what to test)
+
+Test case 
+test case is a step by step action to be performed to validate the functionality(how to test)
+
+
+Test suite
+ the test suite is a group of test cases that belongs to the same category
+eg: grouping all the test cases which come together as smoke test suite and grouping all the test cases which come together as a 
+regression test suite
+
+
+3. RTM(requirement traceability matrics)
+RTM describes the mapping of requirements with test cases.
+the main purpose of RTM is to see all the requirements is all the test cases is covered so that no functionality is missed while doing the testing
+
+4. what is a test environment 
+is software and hardware environment we have setup the same environment as client environment to test
+another name of test environment is test bed
+
+5. Defects/bugs
+ Any mismatched functionality found in an application that leads to a defect/bug
+Defect reporting Tools:
+Jira, TFS
+
+6. Defect Reporting attribute/content
+
+Defect_ID
+Defect Description
+Version
+steps
+Date raised
+reference
+detected by
+status
+fixed by
+date closed
+severity
+priority
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

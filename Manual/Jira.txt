@@ -1,0 +1,50 @@
+1.what is entry-level and exit level of testing
+In entry level we will be doing requirements getting based on that we will be preparing the artif 
+In exit level to ensure all bugs are fixed and bug-free and moving to production
+2.what is 2 parameters that determine the quality of testing
+defect reject ration and defect leakage ration
+Difference between Test management tools and Bug/Defect reporting and tracking tools
+Test management
+1. Plan your Test (Test Cycles)
+2. Track your Requirements, map and monitor test case coverage
+3. Test cases/scripts development, map and monitor requirements coverage
+4. Test case execution (manual testing)
+5. Defect Tracking and
+6. Reporting
+
+Whereas Defect Management Tool is used to track only the Defects.
+
+
+Agile tools
+Jira, VersionOne, TeamCity
+
+Jira is a purely agile management tool for whoever working on a project as access to this tool
+
+Agile workflow in Jira
+we will have creation of the project and then we will backlog containing different epic and story after that we will create a sprint and
+we will add a story to the sprint than we will start the sprint which will go 2 to 3 weeks time for the story we will have task. for the task 
+ dev and testing will write the task and complete the task during that time and close the story
+
+Test management workflow in Jira
+after we install the jeff fire plugin within the Jira we have to perform a different activity we can create test case or we can import test
+case from excel we can create test cycle and add that particular test case to that test cycle and execute that test cases and if there is
+any failer we can report that bug and we will generate that report
+
+
+Agile scrum activity
+how to create project
+how to add user
+
+
+backlog==>epic==>sotry
+Create sprint==> add story to the sprint==>start sprint ==> add task for every sotry
+
+In jira all the object we call it as issues for eg : story is one issue type epic is another issue type
+
+
+
+
+
+
+
+

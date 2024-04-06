@@ -1,0 +1,12 @@
+what is usability testing
+Give the application to the end-user and find whether the application is easy for the user to use, and ask the question to the user about
+how easy to use and what all the difficulties you faced while using the application. based on the answer given, you change the application 
+according to that.
+
+why should i do usability testing
+    Measure users’ satisfaction with your interface
+    Find out if users are able to use the interface and achieve their goals
+    Discover the product’s possible weaknesses
+    Discover what the users like the best about your website
+    Receive useful feedback on how the product can be improved
+    Implement the improvements and boost customer retention
