@@ -1,0 +1,9 @@
+7 testing principle
+
+Testing shows the presence of defects in the software==Higly impossible to give the bug free software to the customer
+Exhaustive testing is not possible == shold not do exhaustive testing. means every time we should not use same data for testing every time
+Early testing == start software at early stages. Means from the beginning when you get the requirments.
+Defect clustering== means some modules contains most of the defects out of 100 only 20% contains more defects
+Pesticide paradox==means if you are executing the same test cases for longer run they wont find any defects, we have to keep update the test cases in every cycle
+Testing is context== means deciding what type of testing should be conducted based on the type of application
+Absence of errors fallacy == Test the software in order to find the defects. means should always think about bugs
